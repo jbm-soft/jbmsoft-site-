@@ -1,236 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JBM SOFT – 전문 소프트웨어 개발</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Reset & Base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Roboto', sans-serif; color: #333; line-height: 1.6; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-
-    /* Colors */
-    :root {
-      --primary: #2C3E50;
-      --accent: #E74C3C;
-      --light: #F8F9FA;
-      --dark: #1A252F;
-    }
-
-    /* Header & Navigation */
-    header {
-      background: var(--dark);
-      padding: 20px 40px;
-      position: sticky; top: 0; z-index: 100;
-    }
-    nav { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #FFF; }
-    .menu { display: flex; gap: 24px; }
-    .menu a { font-weight: 500; color: #DDD; transition: color .3s; }
-    .menu a:hover { color: #FFF; }
-
-    /* Hero Section */
-    #hero {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #FFF;
-      text-align: center;
-      padding: 120px 20px;
-    }
-    #hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 16px; }
-    #hero p { font-size: 1.2rem; max-width: 600px; margin: auto; }
-
-    /* Section Titles */
-    .section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 24px;
-      text-align: center;
-      position: relative;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px; height: 4px;
-      background: var(--accent);
-      margin: 12px auto 0;
-    }
-
-    /* About */
-    #about p {
-      max-width: 800px;
-      margin: 16px auto;
-      text-align: center;
-    }
-
-    /* Process */
-    #process .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
-    .step {
-      background: #FFF;
-      border-radius: 8px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      text-align: center;
-      transition: transform .3s;
-    }
-    .step:hover { transform: translateY(-8px); }
-    .step h3 { margin-bottom: 12px; color: var(--accent); }
-    .step p { font-size: 0.95rem; }
-
-    /* Services */
-    #services .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-      gap: 32px;
-      margin-top: 40px;
-    }
-    .card {
-      background: #FFF;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      transition: transform .3s, box-shadow .3s;
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    }
-    .card-header {
-      background: var(--accent);
-      color: #FFF;
-      padding: 20px;
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-    .card-body {
-      padding: 20px;
-      font-size: 0.95rem;
-      color: var(--primary);
-    }
-
-    /* Why Choose Us */
-    #why ul { margin-top: 24px; }
-    #why li {
-      margin-bottom: 12px;
-      padding-left: 20px;
-      position: relative;
-      font-weight: 500;
-    }
-    #why li::before {
-      content: '✔';
-      position: absolute;
-      left: 0; color: var(--accent);
-    }
-
-    /* Contact */
-    #contact .contact-box {
-      background: var(--light);
-      padding: 40px 20px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      max-width: 500px;
-      margin: auto;
-    }
-    #contact .contact-box h3 {
-      margin-bottom: 16px;
-      color: var(--primary);
-    }
-    #contact .contact-box p {
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--dark);
-      color: #AAA;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.85rem;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Header -->
-  <header>
-    <nav class="container">
-      <div class="logo">JBM SOFT</div>
-      <div class="menu">
-        <a href="#about">소개</a>
-        <a href="#process">개발 방식</a>
-        <a href="#services">서비스</a>
-        <a href="#why">강점</a>
-        <a href="#contact">문의</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Hero -->
-  <section id="hero">
-    <h1>아이디어를 현실로 만드는 All‑in‑One 개발 파트너</h1>
-    <p>8년간 다양한 산업군의 외주 프로젝트를 성공적으로 수행해온 JBM SOFT가<br>
-    귀사의 비즈니스 요구사항을 철저히 분석하고, 설계부터 배포·유지보수까지 책임집니다.</p>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="section-title">회사 소개</div>
-    <p>JBM SOFT는 웹사이트, 모바일 앱, 데스크탑 소프트웨어부터 맞춤형 자동화 툴까지<br>
-       모든 디지털 솔루션의 기획·설계·개발·테스트·배포·유지보수를 일괄 제공하는 전문 개발팀입니다.<br>
-       초기 아이디어만 있어도 구체적인 MVP로 빠르게 전환시켜드리며, 합리적 비용으로 최고의 가치를 제공합니다.</p>
-  </section>
-
-  <!-- Process -->
-  <section id="process" class="section" style="background: #FFF;">
-    <div class="section-title">개발 방식</div>
-    <div class="steps">
-      <div class="step">
-        <h3>요구사항 분석</h3>
-        <p>비즈니스 목표와 사용자 시나리오를 정확히 파악합니다.</p>
-      </div>
-      <div class="step">
-        <h3>견적 및 일정 협의</h3>
-        <p>기능별 비용과 현실적인 일정을 투명하게 제안합니다.</p>
-      </div>
-      <div class="step">
-        <h3>디자인 & 프로토타입</h3>
-        <p>UI/UX 전문가가 시안을 제작하고, 상호 피드백을 통해 완성도를 높입니다.</p>
-      </div>
-      <div class="step">
-        <h3>개발 & 통합 테스트</h3>
-        <p>모듈화된 프레임워크로 안정적으로 개발하고, 모든 단계를 엄격히 검증합니다.</p>
-      </div>
-      <div class="step">
-        <h3>배포 & 유지보수</h3>
-        <p>실서비스 환경에 안전히 배포하고, 이슈 대응 및 기능 확장을 지원합니다.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" class="section">
+  <section id="services" class="section fade-in-1" style="background: var(--sky-light);">
     <div class="section-title">주요 서비스</div>
     <div class="cards">
       <div class="card">
         <div class="card-header">앱/어플리케이션 개발</div>
         <div class="card-body">
           iOS, Android 네이티브 및 크로스플랫폼<br>
-          실시간 데이터 연동 · 반응형 UI · 푸시 알림 및 백그라운드 처리
+          실시간 데이터 연동 · 반응형 UI · 알림·백그라운드 처리
         </div>
       </div>
       <div class="card">
@@ -264,24 +40,24 @@
     </div>
   </section>
 
-  <!-- Why Choose Us -->
-  <section id="why" class="section" style="background: var(--light);">
+  <!-- Why Us -->
+  <section id="why" class="section fade-in-2">
     <div class="section-title">JBM SOFT를 선택해야 하는 이유</div>
     <ul>
       <li>8년 이상의 외주 실전 경험, 다양한 산업군에서 검증된 개발 역량</li>
-      <li>타사 견적 대비 합리적인 가격 제안, 추가 비용 부담 최소화</li>
+      <li>타사 견적 대비 합리적인 비용 제안, 추가 비용 부담 최소화</li>
       <li>단순 아이디어만으로도 MVP/시제품으로 구체화 가능</li>
-      <li>전담 PM(프로젝트 매니저)과 실시간 협업, 투명한 진행 상황 공유</li>
+      <li>전담 PM과 실시간 협업, 투명한 진행 상황 공유</li>
       <li>완성 후 유지보수 및 기능 확장 지원으로 장기적 파트너십 보장</li>
     </ul>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section">
+  <section id="contact" class="section fade-in-3" style="background: var(--sky-light);">
     <div class="section-title">문의 및 상담</div>
     <div class="contact-box">
       <h3>JBM SOFT</h3>
-      <p><strong>이메일:</strong> contact@jbmsoft.com</p>
+      <p><strong>이메일:</strong> jaewon@jbmsoft.co.kr</p>
       <p><strong>전화:</strong> 010-5150-3884</p>
       <p>프로젝트 내용 및 요구사항을 보내주시면<br>최적 견적과 일정 계획을 빠르게 안내해드립니다.</p>
     </div>
