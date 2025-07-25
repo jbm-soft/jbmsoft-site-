@@ -1,4 +1,184 @@
 <!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JBM SOFT – 전문 소프트웨어 개발</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Base */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', sans-serif; color: var(--text-dark); background: var(--sky-light); line-height:1.6; }
+    a { color: inherit; text-decoration:none; }
+    ul { list-style:none; }
+
+    /* Color Palette */
+    :root {
+      --sky: #87CEEB;
+      --sky-light: #E3F6FF;
+      --sky-dark: #5CAFE2;
+      --text-dark: #1A1A1A;
+      --white: #FFFFFF;
+    }
+
+    /* Header & Nav */
+    header {
+      background: linear-gradient(135deg, var(--sky), var(--sky-dark));
+      padding:20px 40px;
+      position:sticky; top:0; z-index:100;
+    }
+    nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    .logo { font-size:1.8rem; font-weight:600; color: var(--white); }
+    .menu { display:flex; gap:24px; }
+    .menu a { font-weight:500; color: rgba(255,255,255,0.9); transition:color .3s; }
+    .menu a:hover { color: var(--white); }
+    @media(max-width:768px) {
+      .menu { width:100%; justify-content:center; margin-top:12px; }
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align:center; color: var(--white);
+      padding:100px 20px;
+      animation:fadeIn 1s ease forwards;
+    }
+    #hero h1 { font-size:2.8rem; font-weight:700; margin-bottom:16px; }
+    #hero p { font-size:1.1rem; max-width:600px; margin:auto; }
+
+    /* Section Styling */
+    .section { padding:80px 20px; max-width:1000px; margin:auto; opacity:0; animation:fadeIn 1s ease forwards; }
+    .section.fade-in-1 { animation-delay:0.4s; }
+    .section.fade-in-2 { animation-delay:0.8s; }
+    .section.fade-in-3 { animation-delay:1.2s; }
+    .section-title {
+      font-size:2rem; font-weight:600; color: var(--sky-dark); text-align:center; margin-bottom:24px; position:relative;
+    }
+    .section-title::after {
+      content:''; display:block; width:80px; height:4px; background: var(--sky); margin:12px auto 0;
+    }
+
+    /* About */
+    #about p { text-align:center; max-width:800px; margin:auto; }
+
+    /* Process Steps */
+    #process .steps {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:32px;
+    }
+    .step {
+      background: var(--white); border-radius:8px;
+      padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      text-align:center; transition:transform .3s, box-shadow .3s;
+    }
+    .step:hover { transform:translateY(-8px); box-shadow:0 8px 30px rgba(0,0,0,0.1); }
+    .step h3 { color: var(--sky-dark); margin-bottom:12px; }
+    .step p { font-size:0.95rem; }
+
+    /* Services Cards */
+    #services .cards {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:32px;
+    }
+    .card {
+      background: var(--white); border-radius:8px; overflow:hidden;
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      transition:transform .3s, box-shadow .3s;
+    }
+    .card:hover { transform:translateY(-8px); box-shadow:0 8px 30px rgba(0,0,0,0.1); }
+    .card-header {
+      background: var(--sky);
+      color: var(--white);
+      padding:20px;
+      font-weight:600;
+      font-size:1.1rem;
+    }
+    .card-body { padding:20px; font-size:0.95rem; color: var(--text-dark); }
+
+    /* Why Us */
+    #why ul { margin-top:24px; }
+    #why li {
+      margin-bottom:12px; padding-left:24px;
+      position:relative; font-weight:500;
+    }
+    #why li::before {
+      content:'✔'; position:absolute; left:0; color: var(--sky-dark);
+    }
+
+    /* Contact */
+    #contact .contact-box {
+      background: var(--white); padding:40px 20px;
+      border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      max-width:500px; margin:auto; text-align:center;
+    }
+    #contact .contact-box h3 { margin-bottom:16px; color: var(--sky-dark); }
+    #contact .contact-box p { margin-bottom:12px; font-size:0.95rem; }
+
+    /* Footer */
+    footer { background: var(--sky-dark); color: var(--white); text-align:center; padding:20px; font-size:0.85rem; }
+
+    /* Animations */
+    @keyframes fadeIn {
+      to { opacity:1; transform:translateY(0); }
+      from { opacity:0; transform:translateY(20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">JBM SOFT</div>
+      <div class="menu">
+        <a href="#about">소개</a>
+        <a href="#process">개발 방식</a>
+        <a href="#services">서비스</a>
+        <a href="#why">강점</a>
+        <a href="#contact">문의</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero" class="section fade-in-1">
+    <h1>아이디어를 현실로 만드는 All‑in‑One 개발 파트너</h1>
+    <p>8년간 다양한 산업군의 외주 프로젝트를 성공적으로 수행해온 JBM SOFT가 귀사의 비즈니스 요구사항을 철저히 분석하고,<br>
+    설계부터 배포·유지보수까지 책임집니다.</p>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section fade-in-2">
+    <div class="section-title">회사 소개</div>
+    <p>JBM SOFT는 웹, 모바일 앱, 데스크탑 소프트웨어부터 맞춤형 자동화 툴까지 모든 디지털 솔루션의 기획·설계·개발·테스트·배포·유지보수를 일괄 제공하는 전문 개발팀입니다.<br>
+       초기 아이디어만 있어도 구체적인 MVP로 빠르게 전환시켜드리며, 합리적 비용으로 최고의 가치를 제공합니다.<p>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section fade-in-3">
+    <div class="section-title">개발 방식</div>
+    <div class="steps">
+      <div class="step">
+        <h3>요구사항 분석</h3>
+        <p>비즈니스 목표와 사용자 시나리오를 정확히 파악합니다.</p>
+      </div>
+      <div class="step">
+        <h3>견적 및 일정 협의</h3>
+        <p>기능별 비용과 현실적인 일정을 투명하게 제안합니다.</p>
+      </div>
+      <div class="step">
+        <h3>디자인 & 프로토타입</h3>
+        <p>UI/UX 전문가가 시안을 제작하고, 상호 피드백을 통해 완성도를 높입니다.</p>
+      </div>
+      <div class="step">
+        <h3>개발 & 통합 테스트</h3>
+        <p>모듈화된 프레임워크로 안정적으로 개발하고, 모든 단계를 엄격히 검증합니다.</p>
+      </div>
+      <div class="step">
+        <h3>배포 & 유지보수</h3>
+        <p>실서비스 환경에 안전히 배포하고, 이슈 대응 및 기능 확장을 지원합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
   <section id="services" class="section fade-in-1" style="background: var(--sky-light);">
     <div class="section-title">주요 서비스</div>
     <div class="cards">
