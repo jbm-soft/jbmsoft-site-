@@ -3,110 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <title>JBM SOFT – 전문 소프트웨어 개발</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- 검색엔진에 사이트맵 위치 알려주기 -->
-  <link rel="sitemap" type="application/xml" title="사이트맵" href="sitemap.xml">
-  <style>
-    /* Reset & Base */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter', sans-serif; color: var(--text-dark); background: var(--sky-light); line-height:1.6; overflow-x:hidden; }
-    a { color: inherit; text-decoration:none; }
-    ul { list-style:none; }
+  <meta name="description" content="JBM SOFT는 웹/앱/자동화툴 등 디지털 솔루션을 기획·개발·유지보수까지 제공하는 전문 개발팀입니다.">
+  <meta name="keywords" content="소프트웨어 개발, 외주 개발, MVP, JBM SOFT">
+  <link rel="canonical" href="https://jbmsoft.co.kr/index.html">
 
-    /* Color Palette */
+  <!-- 사이트맵 등록 -->
+  <link rel="sitemap" type="application/xml" title="사이트맵" href="https://jbmsoft.co.kr/sitemap.xml">
+
+  <!-- 구조화 데이터: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "JBM SOFT",
+    "url": "https://jbmsoft.co.kr",
+    "logo": "https://jbmsoft.co.kr/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/yourpage",
+      "https://www.linkedin.com/company/yourcompany"
+    ]
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
     :root {
-      --sky: #6EC1E4;
-      --sky-light: #EAF8FF;
-      --sky-dark: #3A9ED9;
+      --purple-light: #E9D7FE;
+      --purple: #BB86FC;
+      --purple-dark: #7F39FB;
       --text-dark: #1A1A1A;
       --white: #FFFFFF;
     }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', sans-serif; color: var(--text-dark); background: var(--purple-light); overflow-x:hidden; }
 
     /* Header & Nav */
     header {
-      background: linear-gradient(135deg, var(--sky-dark), var(--sky));
-      padding:20px 40px;
-      position:sticky; top:0; z-index:100;
-      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      padding:16px 24px;
+      position: sticky; top:0; z-index:100;
+      animation: slideDown 0.8s ease forwards;
     }
     nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
-    .logo-container { display:flex; align-items:center; }
-    .logo-img { height:80px; }
-    .logo-text { font-size:1.8rem; font-weight:700; color: var(--white); margin-left:12px; }
-    .menu { display:flex; gap:24px; }
-    .menu a { font-weight:500; color: rgba(255,255,255,0.9); transition:color .3s; }
-    .menu a:hover { color: var(--white); }
+    .logo-text { font-size:1.6rem; font-weight:700; color: var(--white); }
+    .menu { display:flex; gap:16px; }
+    .menu a {
+      font-weight:600; color: var(--white);
+      font-size:1rem; transition: color .3s, transform .2s;
+    }
+    .menu a:hover {
+      color: var(--purple-light);
+      transform: translateY(-2px);
+    }
     @media(max-width:768px) {
-      .menu { width:100%; justify-content:center; margin-top:12px; }
+      .menu { flex-wrap: wrap; }
+      .menu a { font-size:0.9rem; margin:4px; }
     }
 
     /* Hero Section */
     #hero {
-      position:relative; overflow:hidden; text-align:center;
-      padding:120px 20px 180px;
-      animation:fadeIn 1s ease forwards;
-      background: linear-gradient(135deg, var(--sky), var(--sky-light));
+      position: relative; text-align:center;
+      padding:100px 20px 140px;
+      background: linear-gradient(135deg, var(--purple-light), var(--purple));
+      overflow:hidden;
     }
-    #hero h1 { font-size:3rem; font-weight:700; color: var(--text-dark); margin-bottom:16px; }
-    #hero p { font-size:1.2rem; max-width:720px; margin:16px auto; color: var(--text-dark); }
-    #hero .cases { margin-top:24px; font-size:1rem; color: var(--text-dark); font-weight:500; }
     #hero::before, #hero::after {
-      content:''; position:absolute; border-radius:50%; background: rgba(255,255,255,0.4);
-      animation:blob 10s infinite;
+      content:''; position:absolute; border-radius:50%;
+      background: rgba(255,255,255,0.3);
+      animation: blobMove 12s infinite ease-in-out;
     }
-    #hero::before { width:400px; height:400px; top:-150px; left:-150px; }
-    #hero::after { width:300px; height:300px; bottom:-100px; right:-100px; animation-delay:5s; }
-    @keyframes blob { 0%,100% { transform:translate(0,0) scale(1);} 50% { transform:translate(30px,40px) scale(1.3);} }
+    #hero::before { width:300px; height:300px; top:-100px; left:-100px; }
+    #hero::after { width:400px; height:400px; bottom:-150px; right:-150px; animation-delay:6s; }
+    @keyframes blobMove {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(40px,30px) scale(1.2); }
+    }
+    #hero h1 {
+      font-size:2.8rem; font-weight:700; color: var(--white);
+      animation: fadeInUp 1s ease forwards;
+    }
+    #hero p {
+      font-size:1.1rem; color: var(--white); max-width:700px;
+      margin:16px auto; animation: fadeInUp 1.2s ease forwards;
+    }
+    #hero .cta {
+      margin-top:24px; animation: fadeInUp 1.4s ease forwards;
+    }
+    .btn-primary {
+      display:inline-block; padding:12px 28px; background: var(--white);
+      color: var(--purple-dark); border-radius:8px; font-weight:600;
+      transition: background .3s, transform .2s;
+    }
+    .btn-primary:hover {
+      background: var(--purple-light);
+      transform: translateY(-3px);
+    }
 
     /* Sections */
-    .section { padding:80px 20px; max-width:1000px; margin:auto; opacity:0; animation:fadeIn 1s ease forwards; }
-    .section.fade-in-1 { animation-delay:0.4s; }
-    .section.fade-in-2 { animation-delay:0.8s; }
-    .section.fade-in-3 { animation-delay:1.2s; }
-    .section-title { font-size:2rem; font-weight:700; color: var(--sky-dark); text-align:center; margin-bottom:24px; position:relative; }
-    .section-title::after { content:''; display:block; width:80px; height:4px; background: var(--sky); margin:12px auto 0; }
+    .section {
+      padding:80px 20px; max-width:1000px; margin: auto;
+    }
+    .section-title {
+      font-size:2.2rem; font-weight:700; color: var(--purple-dark);
+      text-align:center; position:relative; margin-bottom:32px;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .section-title::after {
+      content:''; display:block; width:100px; height:4px;
+      background: var(--purple); margin:12px auto 0;
+    }
 
     /* Process Steps */
-    #process .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:32px; }
-    .step { background: var(--white); border-radius:8px; padding:24px; box-shadow:0 4px 20px rgba(0,0,0,0.05); text-align:center; transition:transform .3s, box-shadow .3s; }
-    .step:hover { transform:translateY(-8px); box-shadow:0 8px 30px rgba(0,0,0,0.15); }
-    .step h3 { color: var(--sky-dark); margin-bottom:12px; }
-    .step p { font-size:0.95rem; }
+    #process .steps {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:32px;
+    }
+    .step {
+      background: var(--white); border-radius:12px; padding:28px;
+      box-shadow:0 6px 25px rgba(0,0,0,0.08); text-align:center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .step:hover {
+      transform: translateY(-8px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    }
+    .step h3 {
+      color: var(--purple-dark); margin-bottom:12px; font-size:1.2rem;
+    }
+    .step p { font-size:0.95rem; color:#555; }
 
     /* Services Cards */
-    #services .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px; }
-    .card { background: var(--white); border-radius:8px; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,0.05); transition:transform .3s, box-shadow .3s; }
-    .card:hover { transform:translateY(-8px); box-shadow:0 8px 30px rgba(0,0,0,0.1); }
-    .card-header { background: var(--sky); color: var(--white); padding:20px; font-weight:600; font-size:1.1rem; }
-    .card-body { padding:20px; font-size:0.95rem; color: var(--text-dark); }
-
-    /* Why Us */
-    #why ul { margin-top:24px; }
-    #why li { margin-bottom:12px; padding-left:24px; position:relative; font-weight:500; }
-    #why li::before { content:'✔'; position:absolute; left:0; color: var(--sky-dark); }
-
-    /* Contact */
-    #contact .contact-box { background: var(--white); padding:40px 20px; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.05); max-width:500px; margin:auto; text-align:center; }
-    #contact .contact-box h3 { margin-bottom:16px; color: var(--sky-dark); }
-    #contact .contact-box p { margin-bottom:12px; font-size:0.95rem; }
+    #services .cards {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px;
+    }
+    .card {
+      background: var(--white); border-radius:12px; overflow:hidden;
+      box-shadow:0 6px 25px rgba(0,0,0,0.08); transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    }
+    .card-header {
+      background: var(--purple); color: var(--white); padding:24px;
+      font-weight:600; font-size:1.1rem;
+    }
+    .card-body {
+      padding:20px; font-size:0.95rem; color:#444;
+    }
 
     /* Footer */
-    footer { background: var(--sky-dark); color: var(--white); text-align:center; padding:20px; font-size:0.85rem; }
-    footer a { color: #fff; text-decoration: underline; }
+    footer {
+      background: var(--purple-dark); color: var(--white);
+      text-align:center; padding:24px 16px; font-size:0.9rem;
+    }
+    footer a { color: var(--white); text-decoration:underline; }
 
-    /* FadeIn */
-    @keyframes fadeIn { to { opacity:1; transform:translateY(0); } from { opacity:0; transform:translateY(20px); } }
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(20px); }
+      to { opacity:1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <nav>
-      <div class="logo-container">
-        <img src="logo.png" alt="JBM SOFT Logo" class="logo-img">
-        <span class="logo-text">JBM SOFT</span>
-      </div>
+      <div class="logo-text">JBM SOFT</div>
       <div class="menu">
         <a href="#about">소개</a>
         <a href="#process">개발 방식</a>
@@ -119,47 +190,47 @@
   </header>
 
   <!-- Hero -->
-  <section id="hero" class="section fade-in-1">
-    <h1>아이디어를 현실로 만드는 All-in-One 개발 파트너</h1>
-    <p>8년간 다양한 산업군의 외주 프로젝트를 성공적으로 수행해온 JBM SOFT가 귀사의 비즈니스 요구사항을 철저히 분석하고, 설계부터 배포·유지보수까지 책임집니다.</p>
-    <p class="cases">웹·모바일 앱 · OMR 채점 시스템 · e-러닝 플랫폼 · 쇼핑몰 · CRM · IoT 대시보드 · AR/VR · AI/ML · 블록체인 · 빅데이터 대시보드 · API 통합 등 모든 개발 분야를 지원합니다.</p>
-    <div style="margin-top:24px; text-align:center;">
-      <a href="sitemap.html"
-         style="display:inline-block; padding:12px 24px; background:var(--sky-dark);
-                color:#fff; border-radius:6px; font-weight:600;">
-        무료 웹 도구 체험하기
-      </a>
+  <section id="hero">
+    <h1>아이디어를 현실로 만드는<br>All-in-One 개발 파트너</h1>
+    <p>8년간 다양한 산업군의 외주 프로젝트를 성공적으로 수행해온 JBM SOFT가<br>
+    설계부터 배포·유지보수까지 토탈 솔루션을 제공합니다.</p>
+    <div class="cta">
+      <a href="sitemap.html" class="btn-primary">무료 웹 도구 체험하기</a>
     </div>
   </section>
 
   <!-- About -->
-  <section id="about" class="section fade-in-2">
+  <section id="about" class="section">
     <div class="section-title">회사 소개</div>
-    <p>JBM SOFT는 웹, 모바일 앱, 데스크탑 소프트웨어부터 맞춤형 자동화 툴까지 모든 디지털 솔루션의 기획·설계·개발·테스트·배포·유지보수를 일괄 제공하는 전문 개발팀입니다.<br>초기 아이디어만 있어도 구체적인 MVP로 빠르게 전환시켜드리며, 합리적 비용으로 최고의 가치를 제공합니다.</p>
+    <p style="text-align:center; max-width:800px; margin:auto; color:#555;">
+      JBM SOFT는 웹, 모바일 앱, 데스크탑 소프트웨어부터 맞춤형 자동화 툴까지<br>
+      기획·설계·개발·테스트·배포·유지보수를 일괄 제공하는 전문 개발팀입니다.<br>
+      초기 아이디어만 있어도 빠르게 MVP로 전환하며, 합리적 비용으로 최고의 가치를 창출합니다.
+    </p>
   </section>
 
   <!-- Process -->
-  <section id="process" class="section fade-in-3">
+  <section id="process" class="section">
     <div class="section-title">개발 방식</div>
     <div class="steps">
-      <div class="step"><h3>요구사항 분석</h3><p>비즈니스 목표 및 사용자 시나리오를 정확히 파악합니다.</p></div>
-      <div class="step"><h3>견적 및 일정 협의</h3><p>기능별 비용과 현실적인 일정을 투명하게 제안합니다.</p></div>
-      <div class="step"><h3>디자인 & 프로토타입</h3><p>UI/UX 전문가가 시안을 제작하고, 피드백을 반영하여 완성도를 높입니다.</p></div>
-      <div class="step"><h3>개발 & 통합 테스트</h3><p>모듈화된 프레임워크로 안정적인 개발과 엄격한 검증을 수행합니다.</p></div>
-      <div class="step"><h3>배포 & 유지보수</h3><p>실서비스 환경에 안전히 배포하고, 이슈 대응 및 기능 확장을 지원합니다.</p></div>
+      <div class="step"><h3>요구사항 분석</h3><p>비즈니스 목표와 사용자 시나리오를 심층 분석합니다.</p></div>
+      <div class="step"><h3>견적 & 일정 협의</h3><p>투명한 비용과 현실적 일정을 제안합니다.</p></div>
+      <div class="step"><h3>디자인 & 프로토타입</h3><p>UI/UX 전문가가 시안을 제작하고 피드백을 반영합니다.</p></div>
+      <div class="step"><h3>개발 & 통합 테스트</h3><p>모듈화된 프레임워크로 안정적 개발과 철저한 검증을 수행합니다.</p></div>
+      <div class="step"><h3>배포 & 유지보수</h3><p>실서비스 환경에 배포 후 지속적인 운영 지원과 기능 확장을 제공합니다.</p></div>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services" class="section fade-in-1" style="background: var(--sky-light);">
+  <section id="services" class="section" style="background: var(--purple-light);">
     <div class="section-title">주요 서비스</div>
     <div class="cards">
       <div class="card"><div class="card-header">앱/어플리케이션 개발</div><div class="card-body">iOS/Android 네이티브 & 크로스플랫폼 · 반응형 UI · 푸시 알림 · 백그라운드 처리</div></div>
       <div class="card"><div class="card-header">웹사이트 & 플랫폼 구축</div><div class="card-body">기업 홈페이지 · EC/예약 시스템 · 관리자 대시보드 · SEO 최적화</div></div>
       <div class="card"><div class="card-header">교육용 & 관리 시스템</div><div class="card-body">학습·평가 플랫폼 · 출결·성적·포인트 관리 · OMR 자동 채점</div></div>
       <div class="card"><div class="card-header">자동화 툴 & 커스터마이징</div><div class="card-body">업무 효율화 스크립트 · 배치 프로그램 · API 통합 솔루션</div></div>
-      <div class="card"><div class="card-header">커뮤니티 & 플랫폼</div><div class="card-body">사용자 권한 관리 · 게시판 · 파일 공유 · 실시간 알림</div></div>
       <div class="card"><div class="card-header">AI/ML 모델 개발</div><div class="card-body">예측 분석 · 자연어 처리 · 머신러닝 파이프라인 구축</div></div>
+      <div class="card"><div class="card-header">커뮤니티 & 플랫폼</div><div class="card-body">사용자 권한 관리 · 게시판 · 파일 공유 · 실시간 알림</div></div>
       <div class="card"><div class="card-header">AR/VR 애플리케이션</div><div class="card-body">증강/가상 현실 콘텐츠 개발 · 인터랙티브 경험 설계</div></div>
       <div class="card"><div class="card-header">블록체인/핀테크</div><div class="card-body">스마트 컨트랙트 · 지갑 연동 · 트랜잭션 처리</div></div>
       <div class="card"><div class="card-header">빅데이터 & BI 대시보드</div><div class="card-body">데이터 수집/처리 · 시각화 · 통계·분석 리포트</div></div>
@@ -168,33 +239,31 @@
   </section>
 
   <!-- Why Us -->
-  <section id="why" class="section fade-in-2">
-    <div class="section-title">JBM SOFT를 선택해야 하는 이유</div>
-    <ul>
-      <li>8년 외주 실전 경험, 다수 산업군 프로젝트 성공 이력</li>
-      <li>합리적 견적 제안, 추가 비용 부담 최소화</li>
-      <li>아이디어만 있으면 빠른 MVP 제작 가능</li>
-      <li>전담 PM과 실시간 협업, 투명한 진행 관리</li>
-      <li>완료 후 유지보수 및 기능 확장 지원</li>
+  <section id="why" class="section">
+    <div class="section-title">JBMSOFT를 선택해야 하는 이유</div>
+    <ul style="max-width:600px; margin:auto; color:#555; list-style:none; padding:0;">
+      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 8년 외주 실전 경험과 다수 산업군 프로젝트 성공 이력</li>
+      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 합리적 견적 제안으로 추가 비용 최소화</li>
+      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 초기 아이디어만 있어도 빠른 MVP 제작 지원</li>
+      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 전담 PM과 실시간 협업, 투명한 진행 관리</li>
+      <li style="position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 배포 후 유지보수 및 기능 확장까지 원스톱</li>
     </ul>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section fade-in-3" style="background: var(--sky-light);">
+  <section id="contact" class="section" style="background: var(--purple-light);">
     <div class="section-title">문의 및 상담</div>
-    <div class="contact-box">
-      <h3>JBM SOFT</h3>
+    <div style="max-width:500px; margin:auto; background:#fff; padding:32px; border-radius:12px; box-shadow:0 6px 25px rgba(0,0,0,0.08); text-align:center;">
+      <h3 style="color:var(--purple-dark); margin-bottom:16px;">JBM SOFT</h3>
       <p><strong>이메일:</strong> jaewon@jbmsoft.co.kr</p>
       <p><strong>전화:</strong> 010-5150-3884</p>
-      <p>문의나 상담을 원하시면 언제든지 부담 없이 연락주세요.</p>
+      <p style="margin-top:16px; color:#555;">문의나 상담을 원하시면 언제든 부담 없이 연락주세요.</p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    © 2025 JBM SOFT. All rights reserved.
-    &nbsp;|&nbsp;
-    <a href="sitemap.html">서비스 모음 페이지</a>
+    © 2025 JBM SOFT. All rights reserved. &nbsp;|&nbsp; <a href="sitemap.html">서비스 모음 페이지</a>
   </footer>
 </body>
 </html>
