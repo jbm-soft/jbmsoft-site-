@@ -10,9 +10,35 @@
 
   <!-- 공통 CSS -->
   <link href="style.css" rel="stylesheet">
+
+  <style>
+    /* 검색창 스타일 */
+    .search-box {
+      max-width: 400px;
+      margin: 24px auto;
+      text-align: center;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 1rem;
+      border: 2px solid var(--purple-dark);
+      border-radius: 6px;
+      outline: none;
+      transition: border-color .3s;
+    }
+    .search-box input:focus {
+      border-color: var(--purple);
+    }
+    /* 카드에 포인터 효과 */
+    .cards a.card {
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header (index.html과 동일) -->
+  <!-- Header -->
   <header>
     <nav>
       <div class="logo-container">
@@ -26,59 +52,75 @@
     </nav>
   </header>
 
+  <!-- Search -->
+  <div class="search-box">
+    <input type="text" id="search" placeholder="서비스 검색하기…">
+  </div>
+
   <!-- Main Content -->
   <section class="section">
     <div class="section-title">무료 웹 도구 모음</div>
     <p class="section-text" style="margin-bottom:32px;">JBMSOFT에서 직접 제작한 무료 웹 도구를 클릭 한 번으로 이용해 보세요.</p>
 
-    <div class="cards">
-      <div class="card">
+    <div class="cards" id="cards">
+      <a href="lotto.html" class="card">
         <div class="card-header">🎲 로또 번호 추첨기</div>
-        <div class="card-body"><a href="lotto.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="fortune.html" class="card">
         <div class="card-header">🔮 오늘의 운세 확인</div>
-        <div class="card-body"><a href="fortune.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="rps.html" class="card">
         <div class="card-header">✊✌️✋ 가위바위보 게임</div>
-        <div class="card-body"><a href="rps.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="timer.html" class="card">
         <div class="card-header">⏲️ 온라인 타이머</div>
-        <div class="card-body"><a href="timer.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="stopwatch.html" class="card">
         <div class="card-header">⏱️ 온라인 스톱워치</div>
-        <div class="card-body"><a href="stopwatch.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="qrcode.html" class="card">
         <div class="card-header">🔗 QR 코드 생성기</div>
-        <div class="card-body"><a href="qrcode.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="quotes.html" class="card">
         <div class="card-header">💬 랜덤 명언 출력기</div>
-        <div class="card-body"><a href="quotes.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="bmi.html" class="card">
         <div class="card-header">⚖️ BMI 계산기</div>
-        <div class="card-body"><a href="bmi.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="converter.html" class="card">
         <div class="card-header">🔄 단위 변환기</div>
-        <div class="card-body"><a href="converter.html">이동하기</a></div>
-      </div>
-      <div class="card">
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
+      <a href="engname.html" class="card">
         <div class="card-header">📝 영어 이름 생성기</div>
-        <div class="card-body"><a href="engname.html">이동하기</a></div>
-      </div>
+        <div class="card-body">카드 클릭 시 이동</div>
+      </a>
     </div>
   </section>
 
-  <!-- Footer (index.html과 동일) -->
+  <!-- Footer -->
   <footer>
     © 2025 JBM SOFT. All rights reserved. &nbsp;|&nbsp;
     <a href="index.html">메인으로 돌아가기</a>
   </footer>
+
+  <script>
+    // 검색 필터링
+    document.getElementById('search').addEventListener('input', function() {
+      const query = this.value.trim().toLowerCase();
+      document.querySelectorAll('#cards .card').forEach(card => {
+        const title = card.querySelector('.card-header').innerText.toLowerCase();
+        card.style.display = title.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
