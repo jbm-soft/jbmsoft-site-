@@ -11,14 +11,16 @@
 
   <style>
     :root {
-      --purple-light: #E9D7FE;
-      --purple: #BB86FC;
+      --accent-start: #E0C3FC;
+      --accent-end: #8EC5FC;
+      --card-bg: #FFFFFF;
+      --card-shadow: rgba(0,0,0,0.08);
+      --text-dark: #333333;
       --purple-dark: #7F39FB;
-      --white: #FFFFFF;
-      --text-dark: #1A1A1A;
+      --purple: #BB86FC;
     }
 
-    /* 검색창 스타일 + 클리어 버튼 */
+    /* 검색창 */
     .search-box {
       position: relative;
       max-width: 400px;
@@ -35,16 +37,11 @@
     }
     .search-box input:focus { border-color: var(--purple); }
     .search-box .clear-btn {
-      position: absolute;
-      right: 12px;
-      top: 50%;
+      position: absolute; right: 12px; top: 50%;
       transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      font-size: 1.2rem;
-      color: var(--purple-dark);
-      cursor: pointer;
-      display: none;
+      background: transparent; border: none;
+      font-size: 1.2rem; color: var(--purple-dark);
+      cursor: pointer; display: none;
     }
     .search-box input:not(:placeholder-shown) + .clear-btn {
       display: block;
@@ -55,63 +52,48 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 24px;
-      margin-top: 24px;
+      margin: 24px auto;
       padding: 0 20px;
+      max-width: 1200px;
     }
     .cards a.card {
-      position: relative;
       display: block;
-      background: linear-gradient(135deg, var(--purple-light), var(--purple));
+      background: var(--card-bg);
       border-radius: 16px;
-      padding: 32px 24px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      color: var(--white);
-      overflow: hidden;
+      padding: 24px;
+      box-shadow: 0 4px 16px var(--card-shadow);
+      color: var(--text-dark);
       text-decoration: none;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s ease forwards;
+      transition: transform .2s, box-shadow .2s;
+      border: 1px solid transparent;
     }
-    /* staggered animation */
-    .cards a.card:nth-child(1) { animation-delay: 0.1s; }
-    .cards a.card:nth-child(2) { animation-delay: 0.2s; }
-    .cards a.card:nth-child(3) { animation-delay: 0.3s; }
-    .cards a.card:nth-child(4) { animation-delay: 0.4s; }
-    .cards a.card:nth-child(5) { animation-delay: 0.5s; }
-    .cards a.card:nth-child(6) { animation-delay: 0.6s; }
-    .cards a.card:nth-child(7) { animation-delay: 0.7s; }
-    .cards a.card:nth-child(8) { animation-delay: 0.8s; }
-    .cards a.card:nth-child(9) { animation-delay: 0.9s; }
-    .cards a.card:nth-child(10){ animation-delay:1.0s; }
-
     .cards a.card:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--card-shadow);
+      border-color: var(--purple-light);
     }
+
     .card-header {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     .card-header .icon-bg {
-      width: 32px; height: 32px;
+      width: 28px; height: 28px;
       border-radius: 50%;
-      background: var(--purple-dark);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
+      background: var(--accent-start);
+      color: var(--purple-dark);
     }
+    /* Remove RPS icon block via empty icon-bg */
+
     .card-body {
       font-size: 0.95rem;
-      line-height: 1.4;
-      margin-top: 4px;
-      color: rgba(255,255,255,0.9);
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      line-height: 1.5;
+      color: #555555;
     }
   </style>
 </head>
@@ -140,7 +122,7 @@
   <section class="section">
     <div class="section-title">무료 웹 도구 모음</div>
     <p class="section-text" style="margin-bottom:16px;">
-      JBMSOFT에서 제작한 다양한 무료 웹 도구입니다. 검색하거나 아래 카드에서 선택하세요.
+      JBMSOFT에서 제작한 다양한 무료 웹 도구입니다. 검색하거나 아래에서 선택해보세요.
     </p>
 
     <div class="cards" id="cards">
@@ -160,7 +142,7 @@
       </a>
       <a href="rps.html" class="card">
         <div class="card-header">
-          <span class="icon-bg">✊✌️✋</span>
+          <span class="icon-bg">✊</span>
           가위바위보 게임
         </div>
         <div class="card-body">컴퓨터와 재미있는 대결을 즐겨보세요.</div>
@@ -224,7 +206,6 @@
   </footer>
 
   <script>
-    // 검색 필터링
     document.getElementById('search').addEventListener('input', function() {
       const q = this.value.trim().toLowerCase();
       document.querySelectorAll('#cards .card').forEach(card => {
