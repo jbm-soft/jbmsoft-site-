@@ -8,10 +8,10 @@
   <meta name="description" content="JBM SOFT는 웹/앱/자동화툴 등 디지털 솔루션을 기획·개발·유지보수까지 제공하는 전문 개발팀입니다.">
   <meta name="keywords" content="소프트웨어 개발, 외주 개발, MVP, JBM SOFT">
   <link rel="canonical" href="https://jbmsoft.co.kr/index.html">
-
+  
   <!-- 사이트맵 등록 -->
   <link rel="sitemap" type="application/xml" title="사이트맵" href="https://jbmsoft.co.kr/sitemap.xml">
-
+  
   <!-- 구조화 데이터: Organization -->
   <script type="application/ld+json">
   {
@@ -26,158 +26,32 @@
     ]
   }
   </script>
-
+  
+  <!-- 구조화 데이터: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://jbmsoft.co.kr/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "서비스 모음", "item": "https://jbmsoft.co.kr/sitemap.html" }
+    ]
+  }
+  </script>
+  
+  <!-- 구글 폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --purple-light: #E9D7FE;
-      --purple: #BB86FC;
-      --purple-dark: #7F39FB;
-      --text-dark: #1A1A1A;
-      --white: #FFFFFF;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter', sans-serif; color: var(--text-dark); background: var(--purple-light); overflow-x:hidden; }
-
-    /* Header & Nav */
-    header {
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-      padding:16px 24px;
-      position: sticky; top:0; z-index:100;
-      animation: slideDown 0.8s ease forwards;
-    }
-    nav { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
-    .logo-text { font-size:1.6rem; font-weight:700; color: var(--white); }
-    .menu { display:flex; gap:16px; }
-    .menu a {
-      font-weight:600; color: var(--white);
-      font-size:1rem; transition: color .3s, transform .2s;
-    }
-    .menu a:hover {
-      color: var(--purple-light);
-      transform: translateY(-2px);
-    }
-    @media(max-width:768px) {
-      .menu { flex-wrap: wrap; }
-      .menu a { font-size:0.9rem; margin:4px; }
-    }
-
-    /* Hero Section */
-    #hero {
-      position: relative; text-align:center;
-      padding:100px 20px 140px;
-      background: linear-gradient(135deg, var(--purple-light), var(--purple));
-      overflow:hidden;
-    }
-    #hero::before, #hero::after {
-      content:''; position:absolute; border-radius:50%;
-      background: rgba(255,255,255,0.3);
-      animation: blobMove 12s infinite ease-in-out;
-    }
-    #hero::before { width:300px; height:300px; top:-100px; left:-100px; }
-    #hero::after { width:400px; height:400px; bottom:-150px; right:-150px; animation-delay:6s; }
-    @keyframes blobMove {
-      0%,100% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(40px,30px) scale(1.2); }
-    }
-    #hero h1 {
-      font-size:2.8rem; font-weight:700; color: var(--white);
-      animation: fadeInUp 1s ease forwards;
-    }
-    #hero p {
-      font-size:1.1rem; color: var(--white); max-width:700px;
-      margin:16px auto; animation: fadeInUp 1.2s ease forwards;
-    }
-    #hero .cta {
-      margin-top:24px; animation: fadeInUp 1.4s ease forwards;
-    }
-    .btn-primary {
-      display:inline-block; padding:12px 28px; background: var(--white);
-      color: var(--purple-dark); border-radius:8px; font-weight:600;
-      transition: background .3s, transform .2s;
-    }
-    .btn-primary:hover {
-      background: var(--purple-light);
-      transform: translateY(-3px);
-    }
-
-    /* Sections */
-    .section {
-      padding:80px 20px; max-width:1000px; margin: auto;
-    }
-    .section-title {
-      font-size:2.2rem; font-weight:700; color: var(--purple-dark);
-      text-align:center; position:relative; margin-bottom:32px;
-      animation: fadeInUp 0.8s ease forwards;
-    }
-    .section-title::after {
-      content:''; display:block; width:100px; height:4px;
-      background: var(--purple); margin:12px auto 0;
-    }
-
-    /* Process Steps */
-    #process .steps {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:32px;
-    }
-    .step {
-      background: var(--white); border-radius:12px; padding:28px;
-      box-shadow:0 6px 25px rgba(0,0,0,0.08); text-align:center;
-      transition: transform .3s, box-shadow .3s;
-    }
-    .step:hover {
-      transform: translateY(-8px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.12);
-    }
-    .step h3 {
-      color: var(--purple-dark); margin-bottom:12px; font-size:1.2rem;
-    }
-    .step p { font-size:0.95rem; color:#555; }
-
-    /* Services Cards */
-    #services .cards {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px;
-    }
-    .card {
-      background: var(--white); border-radius:12px; overflow:hidden;
-      box-shadow:0 6px 25px rgba(0,0,0,0.08); transition: transform .3s, box-shadow .3s;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow:0 10px 30px rgba(0,0,0,0.12);
-    }
-    .card-header {
-      background: var(--purple); color: var(--white); padding:24px;
-      font-weight:600; font-size:1.1rem;
-    }
-    .card-body {
-      padding:20px; font-size:0.95rem; color:#444;
-    }
-
-    /* Footer */
-    footer {
-      background: var(--purple-dark); color: var(--white);
-      text-align:center; padding:24px 16px; font-size:0.9rem;
-    }
-    footer a { color: var(--white); text-decoration:underline; }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(20px); }
-      to { opacity:1; transform: translateY(0); }
-    }
-    @keyframes slideDown {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(0); }
-    }
-  </style>
+  <!-- 분리된 CSS -->
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
   <header>
     <nav>
-      <div class="logo-text">JBM SOFT</div>
+      <div class="logo-container">
+        <img src="logo.png" alt="JBM SOFT Logo" class="logo-img">
+        <span class="logo-text">JBM SOFT</span>
+      </div>
       <div class="menu">
         <a href="#about">소개</a>
         <a href="#process">개발 방식</a>
@@ -202,7 +76,7 @@
   <!-- About -->
   <section id="about" class="section">
     <div class="section-title">회사 소개</div>
-    <p style="text-align:center; max-width:800px; margin:auto; color:#555;">
+    <p class="section-text">
       JBM SOFT는 웹, 모바일 앱, 데스크탑 소프트웨어부터 맞춤형 자동화 툴까지<br>
       기획·설계·개발·테스트·배포·유지보수를 일괄 제공하는 전문 개발팀입니다.<br>
       초기 아이디어만 있어도 빠르게 MVP로 전환하며, 합리적 비용으로 최고의 가치를 창출합니다.
@@ -222,7 +96,7 @@
   </section>
 
   <!-- Services -->
-  <section id="services" class="section" style="background: var(--purple-light);">
+  <section id="services" class="section">
     <div class="section-title">주요 서비스</div>
     <div class="cards">
       <div class="card"><div class="card-header">앱/어플리케이션 개발</div><div class="card-body">iOS/Android 네이티브 & 크로스플랫폼 · 반응형 UI · 푸시 알림 · 백그라운드 처리</div></div>
@@ -238,26 +112,26 @@
     </div>
   </section>
 
-  <!-- Why Us -->
+  <!-- Why -->
   <section id="why" class="section">
     <div class="section-title">JBMSOFT를 선택해야 하는 이유</div>
-    <ul style="max-width:600px; margin:auto; color:#555; list-style:none; padding:0;">
-      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 8년 외주 실전 경험과 다수 산업군 프로젝트 성공 이력</li>
-      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 합리적 견적 제안으로 추가 비용 최소화</li>
-      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 초기 아이디어만 있어도 빠른 MVP 제작 지원</li>
-      <li style="margin-bottom:12px; position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 전담 PM과 실시간 협업, 투명한 진행 관리</li>
-      <li style="position:relative; padding-left:24px;"><span style="position:absolute; left:0; color:var(--purple-dark); font-weight:700;">✔</span> 배포 후 유지보수 및 기능 확장까지 원스톱</li>
+    <ul class="why-list">
+      <li>8년 외주 실전 경험과 다수 산업군 프로젝트 성공 이력</li>
+      <li>합리적 견적 제안으로 추가 비용 최소화</li>
+      <li>초기 아이디어만 있어도 빠른 MVP 제작 지원</li>
+      <li>전담 PM과 실시간 협업, 투명한 진행 관리</li>
+      <li>배포 후 유지보수 및 기능 확장까지 원스톱</li>
     </ul>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section" style="background: var(--purple-light);">
+  <section id="contact" class="section">
     <div class="section-title">문의 및 상담</div>
-    <div style="max-width:500px; margin:auto; background:#fff; padding:32px; border-radius:12px; box-shadow:0 6px 25px rgba(0,0,0,0.08); text-align:center;">
-      <h3 style="color:var(--purple-dark); margin-bottom:16px;">JBM SOFT</h3>
+    <div class="contact-box">
+      <h3>JBM SOFT</h3>
       <p><strong>이메일:</strong> jaewon@jbmsoft.co.kr</p>
       <p><strong>전화:</strong> 010-5150-3884</p>
-      <p style="margin-top:16px; color:#555;">문의나 상담을 원하시면 언제든 부담 없이 연락주세요.</p>
+      <p>문의나 상담을 원하시면 언제든 부담 없이 연락주세요.</p>
     </div>
   </section>
 
