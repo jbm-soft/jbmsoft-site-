@@ -7,60 +7,111 @@
   <meta name="description" content="JBMSOFT가 제공하는 무료 웹 도구 모음 페이지입니다. 로또, 운세, 타이머 등 다양한 기능을 바로 사용해보세요!">
   <meta name="keywords" content="JBMSOFT, 웹 도구, 로또 번호 추첨기, 온라인 타이머, 무료 도구">
   <link rel="canonical" href="https://jbmsoft.co.kr/sitemap.html">
-
-  <!-- 공통 CSS -->
   <link href="style.css" rel="stylesheet">
 
   <style>
-    /* 검색창 스타일 */
+    :root {
+      --purple-light: #E9D7FE;
+      --purple: #BB86FC;
+      --purple-dark: #7F39FB;
+      --white: #FFFFFF;
+      --text-dark: #1A1A1A;
+    }
+
+    /* 검색창 스타일 + 클리어 버튼 */
     .search-box {
+      position: relative;
       max-width: 400px;
       margin: 32px auto;
-      text-align: center;
     }
     .search-box input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 12px 40px 12px 16px;
       font-size: 1rem;
       border: 2px solid var(--purple-dark);
       border-radius: 8px;
       outline: none;
       transition: border-color .3s;
     }
-    .search-box input:focus {
-      border-color: var(--purple);
+    .search-box input:focus { border-color: var(--purple); }
+    .search-box .clear-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      color: var(--purple-dark);
+      cursor: pointer;
+      display: none;
+    }
+    .search-box input:not(:placeholder-shown) + .clear-btn {
+      display: block;
     }
 
-    /* 카드 개선 스타일 */
+    /* 카드 그리드 */
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 24px;
       margin-top: 24px;
+      padding: 0 20px;
     }
-    .card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-      text-align: center;
-      transition: transform .3s, box-shadow .3s;
-      cursor: default;
+    .cards a.card {
+      position: relative;
+      display: block;
+      background: linear-gradient(135deg, var(--purple-light), var(--purple));
+      border-radius: 16px;
+      padding: 32px 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      color: var(--white);
+      overflow: hidden;
+      text-decoration: none;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
     }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    /* staggered animation */
+    .cards a.card:nth-child(1) { animation-delay: 0.1s; }
+    .cards a.card:nth-child(2) { animation-delay: 0.2s; }
+    .cards a.card:nth-child(3) { animation-delay: 0.3s; }
+    .cards a.card:nth-child(4) { animation-delay: 0.4s; }
+    .cards a.card:nth-child(5) { animation-delay: 0.5s; }
+    .cards a.card:nth-child(6) { animation-delay: 0.6s; }
+    .cards a.card:nth-child(7) { animation-delay: 0.7s; }
+    .cards a.card:nth-child(8) { animation-delay: 0.8s; }
+    .cards a.card:nth-child(9) { animation-delay: 0.9s; }
+    .cards a.card:nth-child(10){ animation-delay:1.0s; }
+
+    .cards a.card:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     }
     .card-header {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--purple-dark);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-header .icon-bg {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--purple-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
     }
     .card-body {
       font-size: 0.95rem;
-      color: #666;
       line-height: 1.4;
+      margin-top: 4px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -82,56 +133,87 @@
   <!-- Search -->
   <div class="search-box">
     <input type="text" id="search" placeholder="서비스 검색하기…">
+    <button class="clear-btn" onclick="this.previousElementSibling.value=''; this.previousElementSibling.dispatchEvent(new Event('input'));">×</button>
   </div>
 
   <!-- Main Content -->
   <section class="section">
     <div class="section-title">무료 웹 도구 모음</div>
-    <p class="section-text" style="margin-bottom:24px;">
-      JBMSOFT에서 제작한 다양한 무료 웹 도구를 소개합니다. 원하시는 기능을 검색하거나 아래에서 찾아보세요.
+    <p class="section-text" style="margin-bottom:16px;">
+      JBMSOFT에서 제작한 다양한 무료 웹 도구입니다. 검색하거나 아래 카드에서 선택하세요.
     </p>
 
     <div class="cards" id="cards">
-      <div class="card">
-        <div class="card-header">🎲 로또 번호 추첨기</div>
-        <div class="card-body">1회 또는 5회 세트로 번호를 무작위 생성합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">🔮 오늘의 운세 확인</div>
+      <a href="lotto.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">🎲</span>
+          로또 번호 추첨기
+        </div>
+        <div class="card-body">1세트 또는 5세트 번호를 한 번에 생성합니다.</div>
+      </a>
+      <a href="fortune.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">🔮</span>
+          오늘의 운세 확인
+        </div>
         <div class="card-body">당일의 행운 메시지를 랜덤으로 제공합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">✊✌️✋ 가위바위보 게임</div>
-        <div class="card-body">컴퓨터와 간단한 가위바위보 대결을 즐겨보세요.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">⏲️ 온라인 타이머</div>
+      </a>
+      <a href="rps.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">✊✌️✋</span>
+          가위바위보 게임
+        </div>
+        <div class="card-body">컴퓨터와 재미있는 대결을 즐겨보세요.</div>
+      </a>
+      <a href="timer.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">⏲️</span>
+          온라인 타이머
+        </div>
         <div class="card-body">원하는 시간으로 타이머를 설정할 수 있습니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">⏱️ 온라인 스톱워치</div>
-        <div class="card-body">시작, 정지, 리셋 기능을 지원합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">🔗 QR 코드 생성기</div>
-        <div class="card-body">텍스트 또는 URL을 QR 코드로 변환합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">💬 랜덤 명언 출력기</div>
+      </a>
+      <a href="stopwatch.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">⏱️</span>
+          온라인 스톱워치
+        </div>
+        <div class="card-body">시작/정지/리셋 기능을 지원합니다.</div>
+      </a>
+      <a href="qrcode.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">🔗</span>
+          QR 코드 생성기
+        </div>
+        <div class="card-body">텍스트나 URL을 QR 코드로 변환합니다.</div>
+      </a>
+      <a href="quotes.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">💬</span>
+          랜덤 명언 출력기
+        </div>
         <div class="card-body">매번 새로운 명언으로 영감을 드립니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">⚖️ BMI 계산기</div>
+      </a>
+      <a href="bmi.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">⚖️</span>
+          BMI 계산기
+        </div>
         <div class="card-body">키와 몸무게로 체질량지수를 계산합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">🔄 단위 변환기</div>
+      </a>
+      <a href="converter.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">🔄</span>
+          단위 변환기
+        </div>
         <div class="card-body">길이, 무게, 온도 등 다양한 단위를 변환합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-header">📝 영어 이름 생성기</div>
+      </a>
+      <a href="engname.html" class="card">
+        <div class="card-header">
+          <span class="icon-bg">📝</span>
+          영어 이름 생성기
+        </div>
         <div class="card-body">한국어 이름을 영어식으로 변환해 드립니다.</div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -144,10 +226,10 @@
   <script>
     // 검색 필터링
     document.getElementById('search').addEventListener('input', function() {
-      const query = this.value.trim().toLowerCase();
+      const q = this.value.trim().toLowerCase();
       document.querySelectorAll('#cards .card').forEach(card => {
-        const title = card.querySelector('.card-header').innerText.toLowerCase();
-        card.style.display = title.includes(query) ? 'block' : 'none';
+        const text = card.querySelector('.card-header').innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'block' : 'none';
       });
     });
   </script>
