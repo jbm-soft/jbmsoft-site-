@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JBM SOFT – 전문 소프트웨어 개발</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- 검색엔진에 사이트맵 위치 알려주기 -->
+  <link rel="sitemap" type="application/xml" title="사이트맵" href="sitemap.xml">
   <style>
     /* Reset & Base */
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -91,6 +93,7 @@
 
     /* Footer */
     footer { background: var(--sky-dark); color: var(--white); text-align:center; padding:20px; font-size:0.85rem; }
+    footer a { color: #fff; text-decoration: underline; }
 
     /* FadeIn */
     @keyframes fadeIn { to { opacity:1; transform:translateY(0); } from { opacity:0; transform:translateY(20px); } }
@@ -110,15 +113,23 @@
         <a href="#services">서비스</a>
         <a href="#why">강점</a>
         <a href="#contact">문의</a>
+        <a href="sitemap.html">서비스 모음</a>
       </div>
     </nav>
   </header>
 
   <!-- Hero -->
   <section id="hero" class="section fade-in-1">
-    <h1>아이디어를 현실로 만드는 All‑in‑One 개발 파트너</h1>
+    <h1>아이디어를 현실로 만드는 All-in-One 개발 파트너</h1>
     <p>8년간 다양한 산업군의 외주 프로젝트를 성공적으로 수행해온 JBM SOFT가 귀사의 비즈니스 요구사항을 철저히 분석하고, 설계부터 배포·유지보수까지 책임집니다.</p>
     <p class="cases">웹·모바일 앱 · OMR 채점 시스템 · e-러닝 플랫폼 · 쇼핑몰 · CRM · IoT 대시보드 · AR/VR · AI/ML · 블록체인 · 빅데이터 대시보드 · API 통합 등 모든 개발 분야를 지원합니다.</p>
+    <div style="margin-top:24px; text-align:center;">
+      <a href="sitemap.html"
+         style="display:inline-block; padding:12px 24px; background:var(--sky-dark);
+                color:#fff; border-radius:6px; font-weight:600;">
+        무료 웹 도구 체험하기
+      </a>
+    </div>
   </section>
 
   <!-- About -->
@@ -182,6 +193,8 @@
   <!-- Footer -->
   <footer>
     © 2025 JBM SOFT. All rights reserved.
+    &nbsp;|&nbsp;
+    <a href="sitemap.html">서비스 모음 페이지</a>
   </footer>
 </body>
 </html>
