@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>로또 번호 추첨기 – JBMSOFT</title>
+  <meta name="description" content="JBMSOFT가 제공하는 무료 로또 번호 자동 추첨기입니다. 1부터 45까지의 숫자 중 6개를 무작위로 생성하여 복권 구매에 도움을 드립니다.">
+  <meta name="keywords" content="로또 번호, 로또 번호 추첨기, 로또 자동 생성, JBMSOFT">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourdomain.com/lotto.html">
+  <!-- Open Graph -->
+  <meta property="og:title" content="로또 번호 추첨기 – JBMSOFT">
+  <meta property="og:description" content="JBMSOFT의 무료 로또 번호 자동 추첨기로 오늘의 행운 번호를 확인해보세요.">
+  <meta property="og:url" content="https://yourdomain.com/lotto.html">
+  <meta property="og:type" content="website">
+  <!-- 공통 스타일 참조 -->
+  <link href="https://yourdomain.com/style.css" rel="stylesheet">
+  <style>
+    /* 페이지 전용 간단 스타일 */
+    main { max-width: 500px; margin: 60px auto; text-align: center; }
+    button { padding: 12px 24px; font-size: 1rem; background: #3A9ED9; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+    #result { margin-top: 24px; font-size: 2rem; color: var(--sky-dark); }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav style="display:flex; justify-content:space-between; align-items:center; padding:20px 40px; background:linear-gradient(135deg,#3A9ED9,#6EC1E4);">
+      <a href="index.html" style="color:#fff; font-weight:600;">← 메인으로 돌아가기</a>
+      <span style="color:#fff; font-size:1.2rem; font-weight:700;">로또 번호 추첨기</span>
+      <a href="sitemap.html" style="color:#fff; font-weight:600;">서비스 모음</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <h1>🎲 로또 번호 추첨기</h1>
+    <p>아래 버튼을 눌러 1부터 45까지 숫자 중 무작위로 6개를 뽑아보세요.</p>
+    <button onclick="generate()">번호 뽑기</button>
+    <div id="result"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="text-align:center; padding:20px; background:#3A9ED9; color:#fff; font-size:0.9rem;">
+    이 페이지는 <strong>JBMSOFT</strong>에서 제작하였습니다.  
+    &nbsp;|&nbsp;  
+    <a href="index.html" style="color:#fff; text-decoration:underline;">메인으로 돌아가기</a>
+  </footer>
+
+  <script>
+    function generate() {
+      const nums = [];
+      while (nums.length < 6) {
+        const n = Math.floor(Math.random() * 45) + 1;
+        if (!nums.includes(n)) nums.push(n);
+      }
+      nums.sort((a, b) => a - b);
+      document.getElementById('result').innerText = nums.join(', ');
+    }
+  </script>
+</body>
+</html>
