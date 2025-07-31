@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>📝 영어 이름 생성기 – JBMSOFT</title>
+  <meta
+    name="description"
+    content="JBMSOFT의 영어 이름 생성기입니다. 입력한 한국어 이름을 기반으로 자연스러운 영어 이름을 추천받아보세요."
+  />
+  <meta name="keywords" content="영어 이름, 이름 생성기, JBMSOFT" />
+  <link rel="canonical" href="https://jbmsoft.co.kr/engname.html" />
+  <link href="style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-start: #E0C3FC;
+      --bg-end: #8EC5FC;
+      --btn-bg: #7F39FB;
+      --btn-hover: #BB86FC;
+      --text-dark: #333;
+      --card-bg: #FFF;
+      --shadow: rgba(0,0,0,0.1);
+      --accent: #7F39FB;
+    }
+    body {
+      margin:0; padding:0;
+      font-family:'Inter',sans-serif;
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text-dark);
+      text-align:center;
+    }
+    main {
+      max-width:480px;
+      margin:80px auto;
+      padding:0 16px;
+    }
+    h1 {
+      font-size:2.4rem; color:#fff; margin-bottom:8px;
+    }
+    .subtitle {
+      color:#f3f3f3; margin-bottom:24px; font-size:1rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius:16px;
+      box-shadow:0 8px 24px var(--shadow);
+      padding:24px;
+      margin-bottom:24px;
+      text-align:left;
+    }
+    .field {
+      margin-bottom:16px;
+    }
+    .field label {
+      display:block;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+    .field input {
+      width:100%;
+      padding:12px;
+      font-size:1rem;
+      border:1px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      transition:border-color .3s;
+      box-sizing:border-box;
+    }
+    .field input:focus {
+      border-color: var(--accent);
+    }
+    #generateBtn {
+      width:100%;
+      padding:12px;
+      background: var(--btn-bg);
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .3s, transform .2s;
+    }
+    #generateBtn:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+    .results {
+      margin-top:20px;
+    }
+    .name-suggestion {
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      padding:12px;
+      border-bottom:1px solid #eee;
+      font-size:1rem;
+    }
+    .name-suggestion:last-child { border-bottom:none; }
+    .name-text { font-weight:600; }
+    .copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      cursor: pointer;
+      font-size:1.2rem;
+      transition: color .2s;
+    }
+    .copy-btn:hover {
+      color: var(--btn-hover);
+    }
+    .link-box {
+      margin-top:32px;
+      font-size:0.9rem;
+      color:#f0f0f0;
+    }
+    .link-box a { color:#fff; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>📝 영어 이름 생성기</h1>
+    <div class="subtitle">한국어 이름을 입력하면 자연스럽고 트렌디한 영어 이름을 추천해드립니다.</div>
+
+    <div class="card">
+      <div class="field">
+        <label for="koreanName">한국어 이름</label>
+        <input type="text" id="koreanName" placeholder="예: 홍길동" />
+      </div>
+      <button id="generateBtn">추천 받기</button>
+
+      <div class="results" id="results"></div>
+    </div>
+
+    <div class="link-box">
+      <a href="sitemap.html">← 서비스 모음으로 돌아가기</a>
+    </div>
+  </main>
+
+  <script>
+    const firstNames = ['Alex', 'Chris', 'Taylor', 'Jordan', 'Morgan', 'Casey', 'Jamie', 'Robin', 'Riley', 'Avery'];
+    const lastNames = ['Lee', 'Kim', 'Park', 'Smith', 'Johnson', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore'];
+    const btn = document.getElementById('generateBtn');
+    const input = document.getElementById('koreanName');
+    const results = document.getElementById('results');
+
+    btn.addEventListener('click', () => {
+      const kname = input.value.trim();
+      if (!kname) return alert('한국어 이름을 입력해주세요.');
+      results.innerHTML = '';
+      // 3가지 추천
+      for (let i = 0; i < 3; i++) {
+        const fn = firstNames[Math.floor(Math.random()*firstNames.length)];
+        const ln = lastNames[Math.floor(Math.random()*lastNames.length)];
+        const suggestion = `${fn} ${ln}`;
+        const div = document.createElement('div');
+        div.className = 'name-suggestion';
+        div.innerHTML = `
+          <span class="name-text">${suggestion}</span>
+          <button class="copy-btn" title="클립보드 복사">📋</button>
+        `;
+        const copyBtn = div.querySelector('.copy-btn');
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(suggestion)
+            .then(() => alert('복사되었습니다: ' + suggestion))
+            .catch(() => alert('복사에 실패했습니다.'));
+        });
+        results.appendChild(div);
+      }
+      // 스크롤
+      results.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

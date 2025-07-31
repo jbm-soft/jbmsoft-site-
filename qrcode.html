@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔗 QR 코드 생성기 – JBMSOFT</title>
+  <meta
+    name="description"
+    content="JBMSOFT의 무료 QR 코드 생성기입니다. URL이나 텍스트를 입력해 빠르게 QR 코드를 만들고 다운로드하세요."
+  />
+  <meta name="keywords" content="QR 코드, QR 생성기, JBMSOFT" />
+  <link rel="canonical" href="https://jbmsoft.co.kr/qrcode.html" />
+  <link href="style.css" rel="stylesheet" />
+  <!-- QRCode.js 라이브러리 -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+    :root {
+      --bg-start: #E0C3FC;
+      --bg-end: #8EC5FC;
+      --btn-bg: #7F39FB;
+      --btn-hover: #BB86FC;
+      --text-dark: #333;
+      --card-bg: #FFF;
+      --shadow: rgba(0,0,0,0.1);
+      --input-bg: #F7F7F7;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text-dark);
+      text-align: center;
+    }
+    main {
+      max-width: 480px;
+      margin: 80px auto;
+      padding: 0 16px;
+    }
+    h1 {
+      font-size: 2.4rem; color: #fff; margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #f3f3f3; margin-bottom: 24px; font-size: 1rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      padding: 24px;
+      margin-bottom: 24px;
+      transition: transform .2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .input-group {
+      display: flex; gap: 8px; margin-bottom: 16px;
+    }
+    .input-group input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #CCC;
+      border-radius: 8px;
+      background: var(--input-bg);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .3s;
+    }
+    .input-group input:focus {
+      border-color: var(--btn-bg);
+    }
+    .input-group button {
+      padding: 0 16px;
+      background: var(--btn-bg);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .3s, transform .2s;
+    }
+    .input-group button:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+    #qrcode {
+      margin: 16px auto;
+      width: 200px; height: 200px;
+    }
+    .actions {
+      display: flex; justify-content: center; gap: 12px; margin-top: 16px;
+    }
+    .actions button {
+      padding: 8px 16px;
+      background: var(--btn-bg);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: background .3s, transform .2s;
+    }
+    .actions button:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+    .link-box {
+      margin-top: 32px;
+      font-size: 0.9rem;
+      color: #f0f0f0;
+    }
+    .link-box a { color: #fff; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🔗 QR 코드 생성기</h1>
+    <div class="subtitle">URL, 텍스트, 연락처 등 원하는 내용을 QR 코드로 만들어보세요.</div>
+    <div class="card">
+      <div class="input-group">
+        <input type="text" id="textInput" placeholder="여기에 URL 또는 텍스트 입력…" />
+        <button id="genBtn">생성</button>
+      </div>
+      <div id="qrcode"></div>
+      <div class="actions">
+        <button id="downloadBtn" disabled>다운로드</button>
+        <button id="copyBtn" disabled>클립보드 복사</button>
+      </div>
+    </div>
+    <div class="link-box">
+      <a href="sitemap.html">← 서비스 모음으로 돌아가기</a>
+    </div>
+  </main>
+
+  <script>
+    const genBtn = document.getElementById('genBtn');
+    const input = document.getElementById('textInput');
+    const qrContainer = document.getElementById('qrcode');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    let lastDataUrl = '';
+
+    genBtn.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (!text) return alert('먼저 내용을 입력해 주세요.');
+      qrContainer.innerHTML = '';
+      QRCode.toDataURL(text, { width: 200, margin:1 })
+        .then(url => {
+          lastDataUrl = url;
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = 'QR Code';
+          qrContainer.appendChild(img);
+          downloadBtn.disabled = false;
+          copyBtn.disabled = false;
+        })
+        .catch(err => alert('QR 생성 실패: ' + err));
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      if (!lastDataUrl) return;
+      const a = document.createElement('a');
+      a.href = lastDataUrl;
+      a.download = 'qr-code.png';
+      a.click();
+    });
+
+    copyBtn.addEventListener('click', () => {
+      if (!lastDataUrl) return;
+      fetch(lastDataUrl)
+        .then(res => res.blob())
+        .then(blob => {
+          navigator.clipboard.write([
+            new ClipboardItem({ [blob.type]: blob })
+          ]).then(() => alert('QR 코드 이미지가 복사되었습니다.'));
+        })
+        .catch(() => alert('복사에 실패했습니다.'));
+    });
+  </script>
+</body>
+</html>

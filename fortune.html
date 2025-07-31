@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>오늘의 운세 – JBMSOFT</title>
+  <meta
+    name="description"
+    content="JBMSOFT가 제공하는 무료 오늘의 운세 확인기입니다. 버튼을 눌러 오늘의 운세 메시지를 받아보세요."
+  />
+  <meta name="keywords" content="오늘의 운세, 무료 운세, JBMSOFT" />
+  <link rel="canonical" href="https://jbmsoft.co.kr/fortune.html" />
+  <link href="style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-start: #fbc2eb;
+      --primary-end: #a6c1ee;
+      --button-bg: #7f39fb;
+      --button-hover: #bb86fc;
+      --text-dark: #333;
+      --card-bg: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+    }
+    main {
+      max-width: 480px;
+      margin: 80px auto;
+      padding: 0 16px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #f3f3f3;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+    button#btnFortune {
+      padding: 14px 28px;
+      font-size: 1rem;
+      background: var(--button-bg);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px var(--shadow);
+      transition: background 0.3s, transform 0.2s;
+    }
+    button#btnFortune:hover {
+      background: var(--button-hover);
+      transform: translateY(-2px);
+    }
+
+    .fortune-card {
+      margin-top: 32px;
+      background: var(--card-bg);
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      min-height: 120px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fortune-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .share-box {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .share-box button {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .share-box button:hover {
+      background: #fff;
+      color: var(--button-bg);
+    }
+
+    .link-box {
+      margin-top: 32px;
+      font-size: 0.9rem;
+      color: #f0f0f0;
+    }
+    .link-box a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🔮 오늘의 운세</h1>
+    <div class="subtitle">버튼을 눌러 오늘의 행운 메시지를 받아보세요!</div>
+    <button id="btnFortune">운세 보기</button>
+
+    <div class="fortune-card" id="fortuneCard"></div>
+
+    <div class="share-box">
+      <button id="copyBtn">클립보드 복사</button>
+      <button id="twitterBtn">트위터에 공유</button>
+    </div>
+
+    <div class="link-box">
+      <a href="sitemap.html">← 서비스 모음으로 돌아가기</a>
+    </div>
+  </main>
+
+  <script>
+    const fortunes = [
+      "오늘은 예상치 못한 기쁨이 찾아올 것입니다.",
+      "작은 친절이 큰 인연으로 돌아옵니다.",
+      "계획한 일이 순조롭게 진행될 것입니다.",
+      "용기를 가지고 도전하면 성과가 있을 거예요.",
+      "건강 관리를 소홀히 하지 마세요.",
+      "금전운이 상승하니 지출을 조절하세요.",
+      "의외의 곳에서 기회를 발견할 수 있습니다.",
+      "소중한 사람과의 대화가 행운을 부릅니다.",
+      "창의적인 아이디어가 돋보이는 날입니다.",
+      "스트레칭과 휴식이 오늘의 키포인트!",
+      "오래된 친구에게 연락해보세요, 반가운 소식이!",
+      "학습과 자기계발에 적합한 날입니다.",
+      "직감에 따라 움직이면 좋습니다.",
+      "새로운 취미가 삶의 활력이 됩니다.",
+      "겸손한 태도가 복을 불러옵니다.",
+      "여행 계획을 세워보면 기분 전환이 됩니다.",
+      "소소한 소비가 큰 만족으로 이어질 수 있습니다.",
+      "문제 해결의 실마리를 찾게 됩니다.",
+      "자신을 믿고 나아가면 난관을 극복합니다.",
+      "오늘의 행운 숫자는 7, 14, 21 중 하나입니다."
+    ];
+
+    const btn = document.getElementById("btnFortune");
+    const card = document.getElementById("fortuneCard");
+    const copyBtn = document.getElementById("copyBtn");
+    const twitterBtn = document.getElementById("twitterBtn");
+    let currentFortune = "";
+
+    btn.addEventListener("click", () => {
+      const idx = Math.floor(Math.random() * fortunes.length);
+      currentFortune = fortunes[idx];
+      card.innerText = currentFortune;
+      card.classList.add("visible");
+    });
+
+    copyBtn.addEventListener("click", () => {
+      if (!currentFortune) return alert("먼저 운세를 확인하세요!");
+      navigator.clipboard.writeText(currentFortune)
+        .then(() => alert("운세가 복사되었습니다!"))
+        .catch(() => alert("복사에 실패했습니다."));
+    });
+
+    twitterBtn.addEventListener("click", () => {
+      if (!currentFortune) return alert("먼저 운세를 확인하세요!");
+      const url = encodeURIComponent("https://jbmsoft.co.kr/fortune.html");
+      const text = encodeURIComponent(`오늘의 운세: ${currentFortune}`);
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
+    });
+  </script>
+</body>
+</html>

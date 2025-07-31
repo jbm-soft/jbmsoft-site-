@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>온라인 스톱워치 – JBMSOFT</title>
+  <meta
+    name="description"
+    content="JBMSOFT가 제공하는 무료 온라인 스톱워치입니다. 랩 타임, 시작/정지, 리셋 기능과 라이트/다크 모드를 지원합니다."
+  />
+  <meta name="keywords" content="온라인 스톱워치, 스톱워치, 랩 타임, JBMSOFT" />
+  <link rel="canonical" href="https://jbmsoft.co.kr/stopwatch.html" />
+  <link href="style.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #fbc2eb;
+      --bg-end: #a6c1ee;
+      --btn-bg: #7f39fb;
+      --btn-hover: #bb86fc;
+      --text-dark: #333;
+      --card-bg: #fff;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --light-bg: #f0f0f0;
+      --dark-bg: #222;
+      --light-text: #222;
+      --dark-text: #f0f0f0;
+    }
+    body {
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      margin: 0; padding: 0;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background: #222;
+      color: var(--dark-text);
+    }
+    main {
+      max-width: 480px;
+      margin: 80px auto;
+      padding: 0 16px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.4rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    body.dark h1 { color: var(--dark-text); }
+    .subtitle {
+      color: #f3f3f3;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+    body.dark .subtitle { color: #ddd; }
+    .stopwatch-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow);
+      padding: 32px 16px;
+      margin-bottom: 24px;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark .stopwatch-card { background: var(--dark-bg); color: var(--dark-text); }
+    .time-display {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .controls button {
+      padding: 10px 20px;
+      background: var(--btn-bg);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .controls button:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+    .controls button:disabled {
+      opacity: 0.5; cursor: default;
+    }
+    .laps {
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+    .laps li {
+      padding: 8px 12px;
+      border-bottom: 1px solid #eee;
+    }
+    body.dark .laps li { border-color: #444; }
+    .lap-label {
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .theme-toggle {
+      position: fixed;
+      top: 16px; right: 16px;
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .theme-toggle:hover {
+      background: #fff;
+      color: var(--btn-bg);
+    }
+    body.dark .theme-toggle {
+      border-color: var(--dark-text);
+      color: var(--dark-text);
+    }
+    body.dark .theme-toggle:hover {
+      background: var(--dark-text);
+      color: #fff;
+    }
+    .link-box {
+      margin-top: 24px;
+      color: #f0f0f0;
+      font-size: 0.9rem;
+    }
+    .link-box a { color: #fff; text-decoration: underline; }
+    body.dark .link-box a { color: #ccc; }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle">다크 모드</button>
+  <main>
+    <h1>⏱️ 온라인 스톱워치</h1>
+    <div class="subtitle">랩 타임으로 기록하고, 다크/라이트 모드 지원</div>
+    <div class="stopwatch-card">
+      <div class="time-display" id="timeDisplay">00:00:00</div>
+      <div class="controls">
+        <button id="startBtn">시작</button>
+        <button id="lapBtn" disabled>랩</button>
+        <button id="pauseBtn" disabled>일시정지</button>
+        <button id="resetBtn" disabled>리셋</button>
+      </div>
+      <ul class="laps" id="lapsList"></ul>
+    </div>
+    <div class="link-box">
+      <a href="sitemap.html">← 서비스 모음으로 돌아가기</a>
+    </div>
+  </main>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const lapBtn   = document.getElementById('lapBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const lapsList = document.getElementById('lapsList');
+    const themeToggle = document.getElementById('themeToggle');
+    let startTime, elapsed=0, timerInterval, lapCount=0;
+
+    function formatTime(ms) {
+      const totalSec = Math.floor(ms/1000);
+      const h = String(Math.floor(totalSec/3600)).padStart(2,'0');
+      const m = String(Math.floor((totalSec%3600)/60)).padStart(2,'0');
+      const s = String(totalSec%60).padStart(2,'0');
+      return `${h}:${m}:${s}`;
+    }
+
+    function update() {
+      elapsed = Date.now() - startTime;
+      timeDisplay.textContent = formatTime(elapsed);
+    }
+
+    startBtn.addEventListener('click', () => {
+      startTime = Date.now() - elapsed;
+      timerInterval = setInterval(update, 200);
+      startBtn.disabled = true;
+      pauseBtn.disabled = false;
+      lapBtn.disabled = false;
+      resetBtn.disabled = false;
+    });
+
+    pauseBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+      lapBtn.disabled = true;
+    });
+
+    resetBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      elapsed = 0; lapCount = 0;
+      timeDisplay.textContent = '00:00:00';
+      lapsList.innerHTML = '';
+      startBtn.disabled = false;
+      pauseBtn.disabled = true;
+      lapBtn.disabled = true;
+      resetBtn.disabled = true;
+    });
+
+    lapBtn.addEventListener('click', () => {
+      lapCount++;
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="lap-label">랩 ${lapCount}:</span> ${formatTime(elapsed)}`;
+      lapsList.prepend(li);
+    });
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      themeToggle.textContent = document.body.classList.contains('dark') ? '라이트 모드' : '다크 모드';
+    });
+  </script>
+</body>
+</html>

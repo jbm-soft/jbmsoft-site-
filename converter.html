@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🔄 단위 변환기 – JBMSOFT</title>
+  <meta
+    name="description"
+    content="JBMSOFT의 무료 단위 변환기입니다. 길이, 무게, 온도 등 다양한 단위를 직관적으로 변환해 보세요."
+  />
+  <meta name="keywords" content="단위 변환기, 길이 변환, 무게 변환, 온도 변환, JBMSOFT" />
+  <link rel="canonical" href="https://jbmsoft.co.kr/converter.html" />
+  <link href="style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-start: #E0C3FC;
+      --bg-end: #8EC5FC;
+      --btn-bg: #7F39FB;
+      --btn-hover: #BB86FC;
+      --text-dark: #333;
+      --card-bg: #FFF;
+      --shadow: rgba(0,0,0,0.1);
+    }
+    body {
+      margin:0; padding:0;
+      font-family:'Inter',sans-serif;
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text-dark);
+      text-align:center;
+    }
+    main {
+      max-width:480px;
+      margin:80px auto;
+      padding:0 16px;
+    }
+    h1 {
+      font-size:2.4rem; color:#fff; margin-bottom:8px;
+    }
+    .subtitle {
+      color:#f3f3f3; margin-bottom:24px; font-size:1rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius:16px;
+      box-shadow:0 8px 24px var(--shadow);
+      padding:24px;
+      margin-bottom:24px;
+      text-align:left;
+    }
+    .field {
+      margin-bottom:16px;
+    }
+    .field label {
+      display:block;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+    .field input, .field select {
+      width:100%;
+      padding:10px;
+      font-size:1rem;
+      border:1px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      transition:border-color .3s;
+      box-sizing:border-box;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--btn-bg);
+    }
+    #convertBtn {
+      width:100%;
+      padding:12px;
+      background: var(--btn-bg);
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      font-size:1rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .3s, transform .2s;
+    }
+    #convertBtn:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+    }
+    .result {
+      margin-top:20px;
+      font-size:1.2rem;
+      text-align:center;
+    }
+    .link-box {
+      margin-top:32px;
+      font-size:0.9rem;
+      color:#f0f0f0;
+    }
+    .link-box a { color:#fff; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🔄 단위 변환기</h1>
+    <div class="subtitle">
+      길이, 무게, 온도 등 다양한 단위를 빠르게 변환해 보세요.
+    </div>
+    <div class="card">
+      <div class="field">
+        <label for="category">변환 종류</label>
+        <select id="category">
+          <option value="length">길이</option>
+          <option value="weight">무게</option>
+          <option value="temperature">온도</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fromUnit">변환 전 단위</label>
+        <select id="fromUnit"></select>
+      </div>
+      <div class="field">
+        <label for="toUnit">변환 후 단위</label>
+        <select id="toUnit"></select>
+      </div>
+      <div class="field">
+        <label for="inputValue">값 입력</label>
+        <input type="number" id="inputValue" placeholder="숫자를 입력하세요" />
+      </div>
+      <button id="convertBtn">변환</button>
+      <div class="result" id="resultDisplay">결과가 여기에 표시됩니다.</div>
+    </div>
+    <div class="link-box">
+      <a href="sitemap.html">← 서비스 모음으로 돌아가기</a>
+    </div>
+  </main>
+
+  <script>
+    const units = {
+      length: { m:1, km:1000, cm:0.01, mm:0.001, mi:1609.34, yd:0.9144, ft:0.3048, in:0.0254 },
+      weight: { kg:1, g:0.001, mg:0.000001, lb:0.453592, oz:0.0283495 },
+      temperature: ['C','F','K']
+    };
+
+    const category = document.getElementById('category');
+    const fromUnit = document.getElementById('fromUnit');
+    const toUnit = document.getElementById('toUnit');
+    const inputValue = document.getElementById('inputValue');
+    const resultDisplay = document.getElementById('resultDisplay');
+
+    function populateUnits() {
+      const cat = category.value;
+      fromUnit.innerHTML = '';
+      toUnit.innerHTML = '';
+      if (cat === 'temperature') {
+        units.temperature.forEach(u => {
+          fromUnit.add(new Option(u,u));
+          toUnit.add(new Option(u,u));
+        });
+      } else {
+        Object.keys(units[cat]).forEach(u => {
+          fromUnit.add(new Option(u,u));
+          toUnit.add(new Option(u,u));
+        });
+      }
+    }
+
+    function convert() {
+      const cat = category.value;
+      let val = parseFloat(inputValue.value);
+      if (isNaN(val)) return alert('값을 입력해주세요.');
+      const from = fromUnit.value, to = toUnit.value;
+      let result;
+      if (cat === 'temperature') {
+        if (from==='C') result = (to==='F'? val*9/5+32 : to==='K'? val+273.15 : val);
+        if (from==='F') result = (to==='C'? (val-32)*5/9 : to==='K'? (val-32)*5/9+273.15 : val);
+        if (from==='K') result = (to==='C'? val-273.15 : to==='F'? (val-273.15)*9/5+32 : val);
+      } else {
+        const base = units[cat][from];
+        result = val * base / units[cat][to];
+      }
+      resultDisplay.innerText = `${val} ${from} = ${parseFloat(result.toFixed(4))} ${to}`;
+    }
+
+    category.addEventListener('change', populateUnits);
+    document.getElementById('convertBtn').addEventListener('click', convert);
+
+    // 초기 설정
+    populateUnits();
+  </script>
+</body>
+</html>
