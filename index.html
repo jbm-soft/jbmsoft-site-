@@ -1,145 +1,225 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7745579506788339"
-     crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <title>JBM SOFT – 전문 소프트웨어 개발</title>
-  <meta name="description" content="JBM SOFT는 웹/앱/자동화툴 등 디지털 솔루션을 기획·개발·유지보수까지 제공하는 전문 개발팀입니다.">
-  <meta name="keywords" content="소프트웨어 개발, 외주 개발, MVP, JBM SOFT">
-  <link rel="canonical" href="https://jbmsoft.co.kr/index.html">
-  
-  <!-- 사이트맵 등록 -->
-  <link rel="sitemap" type="application/xml" title="사이트맵" href="https://jbmsoft.co.kr/sitemap.xml">
-  
-  <!-- 구조화 데이터: Organization -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JBM SOFT – 아이디어를 현실로 만드는 All‑in‑One 개발 파트너</title>
+  <meta name="description" content="웹·앱·자동화·교육 플랫폼까지, 기획부터 배포·유지보수까지 책임지는 JBM SOFT의 실제 사례와 노하우. 무료 웹 도구도 체험해 보세요." />
+  <meta name="keywords" content="JBM SOFT, 소프트웨어 개발, 외주, MVP, 앱 개발, 웹 개발, 자동화, 교육 플랫폼, 포트폴리오" />
+  <link rel="canonical" href="https://jbmsoft.co.kr/" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- 구조화데이터: WebSite + Organization + FAQPage -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "JBM SOFT",
-    "url": "https://jbmsoft.co.kr",
-    "logo": "https://jbmsoft.co.kr/logo.png",
-    "sameAs": [
-      "https://www.facebook.com/yourpage",
-      "https://www.linkedin.com/company/yourcompany"
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"JBM SOFT",
+    "url":"https://jbmsoft.co.kr/",
+    "potentialAction":{"@type":"SearchAction","target":"https://jbmsoft.co.kr/sitemap.html?q={search_term_string}","query-input":"required name=search_term_string"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"JBM SOFT",
+    "url":"https://jbmsoft.co.kr",
+    "logo":"https://jbmsoft.co.kr/logo.png",
+    "contactPoint":[{"@type":"ContactPoint","contactType":"customer support","email":"jaewon@jbmsoft.co.kr","telephone":"+82-10-5150-3884","areaServed":"KR"}]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"MVP는 얼마나 걸리나요?","acceptedAnswer":{"@type":"Answer","text":"핵심 기능 1~3개 기준 2~6주가 일반적입니다. 스프린트 방식으로 매주 결과물을 공유합니다."}},
+      {"@type":"Question","name":"유지보수는 어떻게 진행되나요?","acceptedAnswer":{"@type":"Answer","text":"월 고정(리테이너) 또는 건별(5~10%)로 선택 가능합니다. 모니터링/버그수정/소규모 개선을 포함합니다."}},
+      {"@type":"Question","name":"예산이 제한적입니다. 가능할까요?","acceptedAnswer":{"@type":"Answer","text":"가능합니다. 기능을 단계화하여 필수/선택을 구분하고, 먼저 MVP로 출시한 뒤 지표에 따라 확장합니다."}}
     ]
   }
   </script>
-  
-  <!-- 구조화 데이터: BreadcrumbList -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://jbmsoft.co.kr/index.html" },
-      { "@type": "ListItem", "position": 2, "name": "서비스 모음", "item": "https://jbmsoft.co.kr/sitemap.html" }
-    ]
-  }
-  </script>
-  
-  <!-- 구글 폰트 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- 분리된 CSS -->
-  <link href="style.css" rel="stylesheet">
+
+  <!-- AdSense(승인 전에는 메인에서 노출 최소화 권장) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7745579506788339" crossorigin="anonymous"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <nav>
-      <div class="logo-container">
-        <img src="logo.png" alt="JBM SOFT Logo" class="logo-img">
-        <span class="logo-text">JBM SOFT</span>
-      </div>
-      <div class="menu">
+  <!-- 헤더 -->
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="/"><img src="/logo.png" alt="JBM SOFT"/><span>JBM SOFT</span></a>
+      <button class="nav-toggle" aria-label="메뉴 열기">☰</button>
+      <div class="nav-menu">
         <a href="#about">소개</a>
-        <a href="#process">개발 방식</a>
-        <a href="#services">서비스</a>
-        <a href="#why">강점</a>
-        <a href="#contact">문의</a>
-        <a href="sitemap.html">서비스 모음</a>
+        <a href="#process">프로세스</a>
+        <a href="#portfolio">사례</a>
+        <a href="#reads">읽을거리</a>
+        <a href="/sitemap.html">서비스 모음</a>
+        <a href="#pricing">견적</a>
+        <a href="#contact" class="btn--sm">문의</a>
       </div>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section id="hero">
-    <h1>아이디어를 현실로 만드는<br>All-in-One 개발 파트너</h1>
-    <p>8년간 다양한 산업군의 외주 프로젝트를 성공적으로 수행해온 JBM SOFT가<br>
-    설계부터 배포·유지보수까지 토탈 솔루션을 제공합니다.</p>
-    <div class="cta">
-      <a href="sitemap.html" class="btn-primary">무료 웹 도구 체험하기</a>
+  <!-- 히어로 -->
+  <section id="hero" class="hero">
+    <div class="hero__content">
+      <h1>아이디어를 현실로.<br/>웹·앱·자동화까지 한 곳에서</h1>
+      <p>실전 프로젝트로 검증된 팀이 <b>MVP → 프로덕션</b>까지 빠르고 안정적으로 구축합니다. 
+        <b>무료 웹 도구</b>로 실력을 먼저 체험해 보세요.</p>
+      <div class="hero__cta">
+        <a class="btn" href="/sitemap.html">모든 서비스 보기</a>
+        <a class="btn btn--outline" href="#portfolio">구축 사례 살펴보기</a>
+      </div>
     </div>
   </section>
 
-  <!-- About -->
+  <!-- 소개 -->
   <section id="about" class="section">
-    <div class="section-title">회사 소개</div>
-    <p class="section-text">
-      JBM SOFT는 웹, 모바일 앱, 데스크탑 소프트웨어부터 맞춤형 자동화 툴까지<br>
-      기획·설계·개발·테스트·배포·유지보수를 일괄 제공하는 전문 개발팀입니다.<br>
-      초기 아이디어만 있어도 빠르게 MVP로 전환하며, 합리적 비용으로 최고의 가치를 창출합니다.
-    </p>
-  </section>
-
-  <!-- Process -->
-  <section id="process" class="section">
-    <div class="section-title">개발 방식</div>
-    <div class="steps">
-      <div class="step"><h3>요구사항 분석</h3><p>비즈니스 목표와 사용자 시나리오를 심층 분석합니다.</p></div>
-      <div class="step"><h3>견적 & 일정 협의</h3><p>투명한 비용과 현실적 일정을 제안합니다.</p></div>
-      <div class="step"><h3>디자인 & 프로토타입</h3><p>UI/UX 전문가가 시안을 제작하고 피드백을 반영합니다.</p></div>
-      <div class="step"><h3>개발 & 통합 테스트</h3><p>모듈화된 프레임워크로 안정적 개발과 철저한 검증을 수행합니다.</p></div>
-      <div class="step"><h3>배포 & 유지보수</h3><p>실서비스 환경에 배포 후 지속적인 운영 지원과 기능 확장을 제공합니다.</p></div>
+    <h2 class="section__title">회사 소개</h2>
+    <p class="section__lead">JBM SOFT는 <b>기획·설계·개발·테스트·배포·운영</b> 전 과정을 책임지는 전문 개발팀입니다. 교육·콘텐츠·플랫폼·제조·공공 등 다양한 산업군에서 축적한 도메인 지식으로 문제를 소프트웨어로 해결합니다.</p>
+    <div class="grid grid-3">
+      <div class="feature"><h3>빠른 MVP</h3><p>핵심 기능에 집중해 2~6주 내 출시. 요구사항 워크숍 → 프로토타입 → 베타 릴리스.</p></div>
+      <div class="feature"><h3>확장 가능한 구조</h3><p>모듈화/테스트 자동화/배포 파이프라인으로 유지보수 비용 절감.</p></div>
+      <div class="feature"><h3>투명한 커뮤니케이션</h3><p>주간 리포트, 이슈 트래커, 메신저로 진행 상황을 투명하게 공유.</p></div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="section">
-    <div class="section-title">주요 서비스</div>
+  <!-- 프로세스 -->
+  <section id="process" class="section section--alt">
+    <h2 class="section__title">개발 프로세스</h2>
+    <ol class="steps">
+      <li><b>1. 정의</b> – 목적/지표, 사용자 시나리오 정의</li>
+      <li><b>2. 설계</b> – IA·와이어·UI 키트, 기술 아키텍처</li>
+      <li><b>3. 제작</b> – 스프린트 개발, 코드 리뷰, 자동 테스트</li>
+      <li><b>4. 검증</b> – 통합 테스트/보안 점검/성능 튜닝</li>
+      <li><b>5. 런칭·운영</b> – 배포/모니터링, 유지보수/고도화</li>
+    </ol>
+  </section>
+
+  <!-- 사례: 10개 카드 + 상세 설명 -->
+  <section id="portfolio" class="section">
+    <h2 class="section__title">구축 사례 & 성과</h2>
+    <p class="section__lead">실명 공개가 어려운 프로젝트는 도메인·규모 중심으로 정리했습니다.</p>
     <div class="cards">
-      <div class="card"><div class="card-header">앱/어플리케이션 개발</div><div class="card-body">iOS/Android 네이티브 & 크로스플랫폼 · 반응형 UI · 푸시 알림 · 백그라운드 처리</div></div>
-      <div class="card"><div class="card-header">웹사이트 & 플랫폼 구축</div><div class="card-body">기업 홈페이지 · EC/예약 시스템 · 관리자 대시보드 · SEO 최적화</div></div>
-      <div class="card"><div class="card-header">교육용 & 관리 시스템</div><div class="card-body">학습·평가 플랫폼 · 출결·성적·포인트 관리 · OMR 자동 채점</div></div>
-      <div class="card"><div class="card-header">자동화 툴 & 커스터마이징</div><div class="card-body">업무 효율화 스크립트 · 배치 프로그램 · API 통합 솔루션</div></div>
-      <div class="card"><div class="card-header">AI/ML 모델 개발</div><div class="card-body">예측 분석 · 자연어 처리 · 머신러닝 파이프라인 구축</div></div>
-      <div class="card"><div class="card-header">커뮤니티 & 플랫폼</div><div class="card-body">사용자 권한 관리 · 게시판 · 파일 공유 · 실시간 알림</div></div>
-      <div class="card"><div class="card-header">AR/VR 애플리케이션</div><div class="card-body">증강/가상 현실 콘텐츠 개발 · 인터랙티브 경험 설계</div></div>
-      <div class="card"><div class="card-header">블록체인/핀테크</div><div class="card-body">스마트 컨트랙트 · 지갑 연동 · 트랜잭션 처리</div></div>
-      <div class="card"><div class="card-header">빅데이터 & BI 대시보드</div><div class="card-body">데이터 수집/처리 · 시각화 · 통계·분석 리포트</div></div>
-      <div class="card"><div class="card-header">IoT 솔루션</div><div class="card-body">디바이스 연동 · 실시간 모니터링 · 클라우드 통합</div></div>
+      <article class="card">
+        <h3>① 교육 평가·훈련 플랫폼</h3>
+        <p><b>목표</b> OMR 자동 채점, 문항·지문 훈련, 리포트 자동화. <b>핵심</b> 엑셀 템플릿 → PDF/이미지, 정확도 99%대. <b>성과</b> 월 2만+ 세션.</p>
+      </article>
+      <article class="card">
+        <h3>② 모바일 콘텐츠 앱(글로벌)</h3>
+        <p><b>목표</b> 광고·인앱결제·푸시로 수익화. <b>핵심</b> 오프라인 캐시, 경량 이미지 파이프라인. <b>성과</b> 출시 3개월 내 DAU 8k.</p>
+      </article>
+      <article class="card">
+        <h3>③ 기업 내부 EIS/ERP</h3>
+        <p><b>목표</b> 실시간 현황/지표 대시보드. <b>핵심</b> 역할 권한·결재 흐름·CSV/엑셀 자동화. <b>성과</b> 보고서 작성 시간 70% 절감.</p>
+      </article>
+      <article class="card">
+        <h3>④ IoT 모니터링</h3>
+        <p><b>목표</b> 센서 데이터 수집·알람. <b>핵심</b> 저전력 게이트웨이·MQTT·클라우드 연동. <b>성과</b> 장애 대응 시간 60% 단축.</p>
+      </article>
+      <article class="card">
+        <h3>⑤ 교육용 웹 도구 모음</h3>
+        <p><b>목표</b> 타이머/QR/단위변환 등 체험형 도구. <b>핵심</b> 접근성/SEO/경량화. <b>연계</b> <sitemap>도구 페이지</sitemap>로 유입 확대.</p>
+      </article>
+      <article class="card">
+        <h3>⑥ 커뮤니티·포인트 마켓</h3>
+        <p><b>목표</b> 게시판/포인트 결제/콘텐츠 거래. <b>핵심</b> 안티스팸·신고/정지·공지/이벤트. <b>성과</b> UGC 증가로 체류 1.8배.</p>
+      </article>
+      <article class="card">
+        <h3>⑦ 예약/결제 웹앱</h3>
+        <p><b>목표</b> 간편 예약/취소/환불. <b>핵심</b> PG 연동·바우처·캘린더 동기화. <b>성과</b> 전화 상담 40% 감소.</p>
+      </article>
+      <article class="card">
+        <h3>⑧ 사내 자동화 스크립트</h3>
+        <p><b>목표</b> 정형 엑셀 작업 자동화. <b>핵심</b> 매크로/헤드리스 브라우저·RPA. <b>성과</b> 주 10시간 절감(팀 기준).</p>
+      </article>
+      <article class="card">
+        <h3>⑨ 데이터 시각화 포털</h3>
+        <p><b>목표</b> 데이터 수집·정제·대시보드. <b>핵심</b> ETL·캐시·권한. <b>성과</b> 의사결정 리드타임 50% 단축.</p>
+      </article>
+      <article class="card">
+        <h3>⑩ 게임/엔터테인먼트 유틸</h3>
+        <p><b>목표</b> 경량 앱·광고 수익화. <b>핵심</b> UI 최적화·저사양 대응. <b>성과</b> 평점 4.6/5 유지.</p>
+      </article>
     </div>
   </section>
 
-  <!-- Why -->
-  <section id="why" class="section">
-    <div class="section-title">JBMSOFT를 선택해야 하는 이유</div>
-    <ul class="why-list">
-      <li>8년 외주 실전 경험과 다수 산업군 프로젝트 성공 이력</li>
-      <li>합리적 견적 제안으로 추가 비용 최소화</li>
-      <li>초기 아이디어만 있어도 빠른 MVP 제작 지원</li>
-      <li>전담 PM과 실시간 협업, 투명한 진행 관리</li>
-      <li>배포 후 유지보수 및 기능 확장까지 원스톱</li>
-    </ul>
+  <!-- 읽을거리: 실무 인사이트/가이드 6편 -->
+  <section id="reads" class="section section--alt">
+    <h2 class="section__title">읽을거리 · 실무 노하우</h2>
+    <p class="section__lead">프로젝트 시작 전 꼭 알아두면 좋은 체크리스트와 가이드입니다.</p>
+    <div class="cards">
+      <article class="card">
+        <h3>MVP 범위 정하는 법</h3>
+        <p>모든 기능을 한 번에 만들 필요가 없습니다. 핵심 가치와 검증 지표에 맞춰 1~3개의 기능으로 시작하세요.</p>
+      </article>
+      <article class="card">
+        <h3>광고·수익화 체크리스트</h3>
+        <p>콘텐츠 볼륨, 정책 페이지, 사용자 방해 최소화, 로딩 성능… 승인/수익화에 미치는 요소를 정리했습니다.</p>
+      </article>
+      <article class="card">
+        <h3>SEO 기본기 10가지</h3>
+        <p>메타/OG/구조화 데이터, 내부 링크, 사이트맵, 색인 모니터링까지—가볍지만 효과적인 실전 팁.</p>
+      </article>
+      <article class="card">
+        <h3>퍼포먼스 최적화</h3>
+        <p>이미지/폰트/스크립트 병목 줄이기, LCP/CLS를 안정적으로 관리하는 방법.</p>
+      </article>
+      <article class="card">
+        <h3>데이터 기반 의사결정</h3>
+        <p>최소한의 이벤트 설계와 주간 리포트로, 감(感)이 아닌 데이터로 우선순위를 정합니다.</p>
+      </article>
+      <article class="card">
+        <h3>유지보수 계약 가이드</h3>
+        <p>리테이너 vs 건별, SLA 수준, 배포/백업/장애 대응 범위를 명확히 합의하는 방법.</p>
+      </article>
+    </div>
   </section>
 
-  <!-- Contact -->
+  <!-- 견적 가이드 -->
+  <section id="pricing" class="section">
+    <h2 class="section__title">견적 가이드(범위 기준)</h2>
+    <div class="grid grid-3">
+      <div class="plan"><h3>PoC/MVP</h3><p class="price">₩2M ~</p><ul><li>핵심 기능 1~3개</li><li>간단한 관리자</li><li>기본 분석/로그</li></ul></div>
+      <div class="plan plan--focus"><h3>프로덕션</h3><p class="price">₩5M ~</p><ul><li>반응형 UI/접근성</li><li>권한/결제/알림/통계</li><li>테스트·보안·배포 파이프라인</li></ul></div>
+      <div class="plan"><h3>운영/유지보수</h3><p class="price">월 ₩0.3M ~</p><ul><li>버그 픽스/소규모 개선</li><li>모니터링/성능 튜닝</li><li>월간 리포트</li></ul></div>
+    </div>
+    <p class="note">* 실제 비용은 기능 범위/일정/품질 수준에 따라 달라집니다.</p>
+  </section>
+
+  <!-- 문의 -->
   <section id="contact" class="section">
-    <div class="section-title">문의 및 상담</div>
-    <div class="contact-box">
-      <h3>JBM SOFT</h3>
-      <p><strong>이메일:</strong> jaewon@jbmsoft.co.kr</p>
-      <p><strong>전화:</strong> 010-5150-3884</p>
-      <p>문의나 상담을 원하시면 언제든 부담 없이 연락주세요.</p>
+    <h2 class="section__title">문의</h2>
+    <div class="contact">
+      <div>
+        <p><b>이메일</b> jaewon@jbmsoft.co.kr</p>
+        <p><b>전화</b> 010-5150-3884</p>
+        <p>문의나 상담을 원하시면 언제든지 부담 없이 연락주세요.</p>
+      </div>
+      <a class="btn" href="/sitemap.html">서비스/도구 전체 보기</a>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 JBM SOFT. All rights reserved. &nbsp;|&nbsp; <a href="sitemap.html">서비스 모음 페이지</a>
+  <!-- 푸터 -->
+  <footer class="site-footer">
+    <div class="footer__links">
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="/terms.html">이용약관</a>
+      <a href="/sitemap.html">사이트맵</a>
+    </div>
+    <small>© 2025 JBM SOFT. All rights reserved.</small>
   </footer>
+
+  <script>
+    // 모바일 메뉴 토글
+    document.querySelector('.nav-toggle').addEventListener('click', function(){
+      document.querySelector('.nav-menu').classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
+
