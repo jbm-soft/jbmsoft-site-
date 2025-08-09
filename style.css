@@ -1,177 +1,201 @@
 /* =========================================================
-   JBM SOFT – Pastel Purple UI Kit
-   - 라이트톤 파스텔 보라 테마
-   - 가독성, 접근성(포커스 링/명도 대비), 반응형 최적화
+   JBM SOFT – Aurora Purple UI (Glass + Glow)
+   톤: 보라빛 파스텔 / 세련 · 화려 · 가벼움
    ========================================================= */
 
-/* ---------- 컬러/스케일 토큰 ---------- */
+/* Color tokens */
 :root{
-  /* Brand */
-  --brand-50:#f6f1fe;
-  --brand-100:#eee5fd;
-  --brand-200:#decdfb;
-  --brand-300:#cdb4fb;
-  --brand-400:#bba0f8;   /* 카드 강조 */
-  --brand-500:#a987f4;   /* 메인 버튼 */
-  --brand-600:#8d6ee2;   /* Hover/Outline */
-  --brand-700:#7a5bd1;   /* 헤더 텍스트 */
-  --brand-900:#4e3897;
+  --ink:#0b0b12;             /* 본문 텍스트 (다크) */
+  --text:#f7f5ff;            /* 밝은 텍스트 */
+  --muted:#cfc7e8;           /* 보조 텍스트 */
 
-  /* Neutrals */
-  --bg:#f9f7fc;          /* 페이지 배경 (밝은 라벤더) */
-  --surface:#ffffff;     /* 카드/헤더 배경 */
-  --ink:#26252a;         /* 본문 텍스트 */
-  --muted:#6d6d6d;       /* 보조 텍스트 */
-  --line:#ebe7f6;        /* 경계선 */
+  --bg-0:#0b0814;            /* 페이지 배경 (딥 퍼플) */
+  --bg-1:#110a1f;            /* 그라데이션 시작 */
+  --bg-2:#1b1130;            /* 그라데이션 끝 */
 
-  /* Effects */
-  --radius:16px;
-  --shadow:0 8px 24px rgba(57, 37, 104, .10);
-  --shadow-lg:0 16px 40px rgba(57, 37, 104, .16);
+  --glass:rgba(255,255,255,.06);
+  --glass-strong:rgba(255,255,255,.14);
+  --border:rgba(255,255,255,.18);
 
-  /* Type scale */
-  --fs-hero: clamp(2.1rem, 4vw, 3rem);
-  --fs-h2: clamp(1.4rem, 1.8vw, 2rem);
-  --fs-body: 16px;
-  --fs-small: .92rem;
+  --brand:#b892ff;           /* 파스텔 보라 */
+  --brand-2:#8aa6ff;         /* 파스텔 블루 */
+  --brand-3:#ffd6ff;         /* 라이트 핑크 하이라이트 */
+  --success:#79ffa4;
 
-  /* Animation */
-  --speed: .18s;
+  --radius:18px;
+  --shadow:0 18px 40px rgba(12,10,26,.35);
+  --shadow-sm:0 10px 24px rgba(12,10,26,.28);
+
+  --fs-hero:clamp(2.2rem, 3.8vw, 3.6rem);
+  --fs-h2:clamp(1.4rem, 2vw, 2.1rem);
+  --fs-body:16px;
+
+  --speed:.22s;
 }
 
-/* ---------- Reset / Base ---------- */
+/* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  font-family: Inter, ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  background: var(--bg);
-  color: var(--ink);
-  line-height: 1.7;
-  font-size: var(--fs-body);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  margin:0; font-family:Inter, Pretendard, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans KR", sans-serif;
+  color:var(--text); font-size:var(--fs-body); line-height:1.7;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(184,146,255,.20), transparent),
+    radial-gradient(900px 500px at 85% -5%, rgba(138,166,255,.18), transparent),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
 }
 img{max-width:100%; display:block}
-a{color: var(--brand-700); text-decoration:none; transition: color var(--speed) ease}
-a:hover{color: var(--brand-900)}
-:focus-visible{outline: 3px solid var(--brand-300); outline-offset: 2px}
+a{color:var(--brand-3); text-decoration:none; transition:color var(--speed) ease}
+a:hover{color:#fff}
+:focus-visible{outline:3px solid rgba(184,146,255,.6); outline-offset:3px}
 
-/* ---------- 헤더/내비 ---------- */
-header{
-  position: sticky; top: 0; z-index: 100;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+/* Header / Nav (glass) */
+.site-header{
+  position:sticky; top:0; z-index:100;
+  background:linear-gradient(180deg, rgba(11,8,20,.7), rgba(11,8,20,.35));
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--border);
 }
 .nav{
-  max-width: 1200px; margin: 0 auto;
-  padding: 14px 20px;
-  display: flex; align-items: center; gap: 16px;
+  max-width:1200px; margin:0 auto; padding:14px 20px;
+  display:flex; align-items:center; gap:16px;
 }
-.brand{
-  display: inline-flex; align-items: center; gap: 10px;
-  font-weight: 800; color: var(--brand-700); font-size: 1.1rem;
+.brand{display:flex; align-items:center; gap:10px; font-weight:800; color:#fff}
+.brand img{width:30px; height:30px; border-radius:9px; box-shadow:0 0 0 2px rgba(184,146,255,.35)}
+.nav-menu{margin-left:auto; display:flex; gap:1.4rem; align-items:center}
+.nav-menu a{color:var(--muted); padding:.5rem 0; border-bottom:2px solid transparent}
+.nav-menu a:hover{color:#fff; border-color:rgba(184,146,255,.5)}
+.nav-toggle{display:none; font-size:22px; color:#fff; background:none; border:0}
+@media (max-width:860px){
+  .nav-toggle{display:block}
+  .nav-menu{
+    position:absolute; right:20px; top:58px; flex-direction:column; gap:10px;
+    background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow-sm);
+    padding:12px; display:none;
+    backdrop-filter: blur(10px) saturate(140%);
+  }
+  .nav-menu.open{display:flex}
 }
-.brand img{width:30px; height:30px; border-radius: 8px; box-shadow: 0 0 0 2px var(--brand-100)}
-.nav-menu{margin-left: auto; display: flex; gap: 1.5rem; align-items: center}
-.nav-menu a{
-  padding: .5rem 0;
-  border-bottom: 2px solid transparent;
-  color: var(--ink);
-}
-.nav-menu a:hover{border-color: var(--brand-300); color: var(--brand-900)}
 
-/* ---------- 히어로 ---------- */
+/* Hero (Aurora glow) */
 .hero{
-  padding: 84px 20px 56px;
-  text-align: center;
-  background:
-    radial-gradient(800px 300px at 15% -10%, rgba(173,139,247,.25), transparent),
-    radial-gradient(600px 250px at 85% 0%, rgba(209,189,255,.28), transparent),
-    linear-gradient(135deg, #efe9fb 0%, #fbf9ff 100%);
+  position:relative; padding:110px 20px 80px; text-align:center; overflow:hidden;
 }
+.hero::before,
+.hero::after{
+  content:""; position:absolute; inset:auto; filter:blur(60px); opacity:.55; pointer-events:none;
+}
+.hero::before{
+  width:520px; height:520px; top:-160px; left:-80px;
+  background:radial-gradient(circle, rgba(184,146,255,.65), transparent 60%);
+}
+.hero::after{
+  width:600px; height:600px; top:-120px; right:-120px;
+  background:radial-gradient(circle, rgba(138,166,255,.55), transparent 60%);
+}
+.hero__content{max-width:1100px; margin:0 auto; position:relative}
 .hero h1{
-  font-size: var(--fs-hero);
-  color: var(--brand-900);
-  margin: 0 0 12px;
-  letter-spacing: -.01em;
+  margin:0 0 12px; font-size:var(--fs-hero); letter-spacing:-.01em;
+  background:linear-gradient(90deg,#fff 0%, var(--brand) 40%, var(--brand-2) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-.hero p{
-  max-width: 720px; margin: 0 auto;
-  color: var(--muted);
+.hero p{max-width:820px; margin:0 auto; color:var(--muted)}
+.hero__cta{margin-top:26px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.hero__stats{
+  margin-top:22px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; color:var(--muted)
 }
-.hero__cta{margin-top: 24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.hero__stats b{color:#fff}
 
-/* ---------- 버튼 ---------- */
+/* Buttons */
 .btn{
-  display: inline-block;
-  background: linear-gradient(90deg, var(--brand-500), var(--brand-600));
-  color: #fff; font-weight: 700;
-  padding: .9rem 1.6rem; border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  transition: transform var(--speed) ease, box-shadow var(--speed) ease, filter var(--speed) ease;
+  display:inline-block; padding:12px 18px; border-radius:14px;
+  color:#0b0b12; font-weight:800; letter-spacing:.01em;
+  background:linear-gradient(90deg, var(--brand) 0%, var(--brand-2) 100%);
+  box-shadow:0 6px 20px rgba(132,104,225,.35), inset 0 0 0 1px rgba(255,255,255,.35);
+  transition:transform var(--speed) ease, box-shadow var(--speed) ease, filter var(--speed) ease;
 }
-.btn:hover{ transform: translateY(-2px); box-shadow: var(--shadow-lg); filter: saturate(1.05)}
-.btn:active{ transform: translateY(0) scale(.98) }
+.btn:hover{transform:translateY(-3px); box-shadow:0 14px 38px rgba(132,104,225,.45)}
+.btn:active{transform:translateY(0) scale(.98)}
 .btn--outline{
-  background: transparent; color: var(--brand-700);
-  border: 2px solid var(--brand-400);
-}
-.btn--sm{ padding: .55rem .9rem; border-radius: 999px }
-
-/* ---------- 섹션 공통 ---------- */
-.section{ max-width: 1200px; margin: 0 auto; padding: 64px 20px }
-.section__title{
-  font-size: var(--fs-h2); text-align: center;
-  color: var(--brand-900); margin: 0 0 8px;
-}
-.section__lead{ text-align: center; color: var(--muted); margin-bottom: 24px }
-
-/* ---------- 그리드/카드 ---------- */
-.grid-3{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
-@media (max-width: 980px){ .grid-3{ grid-template-columns: 1fr 1fr } }
-@media (max-width: 640px){ .grid-3{ grid-template-columns: 1fr } }
-
-.cards{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
-@media (max-width: 980px){ .cards{ grid-template-columns: 1fr 1fr } }
-@media (max-width: 640px){ .cards{ grid-template-columns: 1fr } }
-
-.card{
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 1.6rem;
-  box-shadow: var(--shadow);
-  transition: transform var(--speed) ease, box-shadow var(--speed) ease, border-color var(--speed) ease;
-}
-.card:hover{
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--brand-200);
-}
-.card h3{ color: var(--brand-700); margin: 0 0 .6rem }
-.card p{ color: var(--muted); margin: 0 }
-
-/* ---------- 가격/플랜 카드 보조 ---------- */
-.card .price{ font-size: 1.35rem; font-weight: 800; color: var(--brand-900); margin-top: .2rem }
-.card .list{ margin: .6rem 0 0; padding-left: 1.1rem; color: var(--muted) }
-
-/* ---------- 푸터 ---------- */
-footer{
-  background: var(--surface);
-  box-shadow: var(--shadow);
-  padding: 20px;
-  text-align: center;
-  color: var(--muted);
-  font-size: var(--fs-small);
-  border-top: 1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  color:#fff; border:1px solid var(--border);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
 }
 
-/* ---------- 유틸리티 ---------- */
-.container{ max-width: 1200px; margin: 0 auto; padding: 0 20px }
-.hide{ display:none !important }
+/* Sections */
+.section{max-width:1200px; margin:0 auto; padding:70px 20px}
+.section--alt{
+  position:relative; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+}
+.section__title{font-size:var(--fs-h2); margin:0 0 10px; color:#fff; text-align:center}
+.section__lead{color:var(--muted); text-align:center; margin-bottom:24px}
 
-/* ---------- 사용성 향상 ---------- */
+/* Grid / Cards (glass + glow edge) */
+.grid{display:grid; gap:16px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:980px){.grid-3{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+.cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}}
+
+.card, .plan, .tool, .feature, .contact{
+  position:relative;
+  border-radius:var(--radius);
+  background:linear-gradient(180deg, var(--glass), rgba(255,255,255,.03));
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-sm);
+  padding:18px;
+  transition:transform var(--speed) ease, box-shadow var(--speed) ease, border-color var(--speed) ease;
+  backdrop-filter: blur(8px) saturate(130%);
+}
+.card::after, .plan::after, .tool::after, .feature::after{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:linear-gradient(120deg, rgba(184,146,255,.22), rgba(138,166,255,.0) 40%, rgba(255,214,255,.18) 100%);
+  opacity:.65; mix-blend-mode:overlay; mask: linear-gradient(#000, transparent 60%);
+}
+.card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:var(--glass-strong)}
+.card h3{margin:0 0 8px; color:#fff}
+.card p{margin:0; color:var(--muted)}
+
+/* Steps (process) */
+.steps{display:grid; gap:10px}
+.steps li{
+  list-style:none; padding:12px 14px; border-radius:14px;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border:1px dashed var(--border); color:var(--muted)
+}
+
+/* Plans */
+.plan .price{font-size:1.35rem; font-weight:900; color:#fff; margin:.2rem 0 .6rem}
+.plan ul{margin:0; padding-left:1.1rem; color:var(--muted)}
+.plan--focus{outline:2px solid rgba(184,146,255,.55); box-shadow:0 0 40px rgba(184,146,255,.15) inset}
+
+/* FAQ */
+.faq details{border-radius:14px; background:linear-gradient(180deg, var(--glass), rgba(255,255,255,.02)); border:1px solid var(--border); padding:12px}
+.faq details+details{margin-top:10px}
+
+/* Contact */
+.contact{display:flex; justify-content:space-between; align-items:center; gap:16px}
+@media (max-width:900px){.contact{flex-direction:column; align-items:flex-start}}
+
+/* Footer */
+.site-footer{
+  max-width:1200px; margin:0 auto; padding:28px 20px;
+  color:var(--muted); display:flex; justify-content:space-between; align-items:center;
+  border-top:1px solid var(--border)
+}
+.footer__links a{color:var(--muted); margin-right:12px}
+.footer__links a:hover{color:#fff}
+
+/* Utilities */
+.hide{display:none !important}
+
+/* Motion safety */
 @media (prefers-reduced-motion: reduce){
-  *{ animation: none !important; transition: none !important }
+  *{transition:none !important; animation:none !important}
 }
