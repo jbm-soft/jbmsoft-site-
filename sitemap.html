@@ -4,38 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>서비스 모음 – JBM SOFT</title>
-  <meta name="description" content="JBM SOFT 무료 웹 도구 모음. 타이머, 스톱워치, QR코드, 로또, 단위 변환, BMI 계산기, 영어 이름 생성기 등." />
+  <meta name="description" content="JBM SOFT 무료 웹 도구 모음. 타이머, 스톱워치, QR 코드, 로또, 단위 변환, BMI, 영어 이름 생성 등." />
   <link rel="canonical" href="https://jbmsoft.co.kr/sitemap.html" />
+  <!-- 전역 테마 -->
   <link rel="stylesheet" href="/style.css" />
+  <!-- 페이지 전용: 메인과 톤 맞춘 오로라 다크 + 로고 박스만 라이트 -->
   <style>
-    /* 페이지 전용: 상단 히어로와 툴바만 살짝 커스터마이즈 */
     .sitemap-hero{
       padding:72px 20px 30px; text-align:center; position:relative; overflow:hidden;
+      background:
+        radial-gradient(900px 360px at 18% -12%, rgba(184,146,255,.28), transparent 62%),
+        radial-gradient(720px 280px at 86% -10%, rgba(106,166,255,.24), transparent 60%),
+        linear-gradient(180deg, #0f0c22 0%, #100e26 100%);
     }
     .sitemap-hero h1{
       margin:0 0 10px; font-size:clamp(1.9rem,4vw,2.5rem);
-      background:linear-gradient(90deg,#fff 0%, #d6b1ff 45%, #a9c5ff 100%);
+      background:linear-gradient(90deg,#ffffff 0%, #d6b1ff 45%, #8fb3ff 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
       text-shadow:0 10px 30px rgba(0,0,0,.25);
     }
-    .sitemap-hero p{color:rgba(255,255,255,.9); max-width:760px; margin:0 auto}
+    .sitemap-hero p{color:var(--muted); max-width:760px; margin:0 auto}
 
     .tools-toolbar{max-width:1200px;margin:18px auto 0;padding:0 20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
     .chip{
-      padding:.5rem .9rem; border-radius:999px; border:1px solid rgba(255,255,255,.25);
-      background:rgba(255,255,255,.1); color:#fff; cursor:pointer; font-weight:600; font-size:.95rem;
+      padding:.5rem .9rem; border-radius:999px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      color:#fff; cursor:pointer; font-weight:700; font-size:.95rem;
       transition:transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-      box-shadow:0 6px 16px rgba(0,0,0,.2);
-      backdrop-filter: blur(8px) saturate(130%);
+      box-shadow:0 6px 16px rgba(0,0,0,.2); backdrop-filter: blur(8px) saturate(130%);
     }
     .chip:hover{transform:translateY(-2px)}
-    .chip[aria-pressed="true"]{background:rgba(255,255,255,.2); border-color:rgba(255,255,255,.5)}
+    .chip[aria-pressed="true"]{background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.45)}
 
     .searchwrap{max-width:760px;margin:18px auto 0;padding:0 20px;position:relative}
     .searchwrap input{
-      width:100%; padding:14px 44px 14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,.35);
-      background:rgba(255,255,255,.15); color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25);
-      backdrop-filter: blur(10px) saturate(140%);
+      width:100%; padding:14px 46px 14px 16px; border-radius:14px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      color:#fff; box-shadow:0 8px 20px rgba(0,0,0,.25); backdrop-filter: blur(10px) saturate(140%);
     }
     .searchwrap input::placeholder{color:rgba(255,255,255,.8)}
     .searchwrap button{
@@ -46,27 +51,34 @@
     .tools-grid{max-width:1200px;margin:28px auto 0;padding:0 20px}
     .tools-count{color:#fff; opacity:.85; margin:8px 0 12px}
 
-    /* 카드 레이아웃은 style.css의 .cards / .tool-card 사용 */
+    /* 카드: 전역 .card/.tool-card 사용 + 톤만 조정 */
+    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    @media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+
+    .tool-card{display:block; text-decoration:none; color:#fff}
     .tool-head{display:flex; align-items:center; gap:10px; margin-bottom:8px}
     .tool-ico{
       width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg, #6a11cb, #2575fc); color:#fff; font-size:18px
+      background:linear-gradient(135deg, var(--accent-1), var(--accent-2)); color:#fff; font-size:18px
     }
-    .tool-title{font-weight:800; color:#2e2353}
-    .tool-desc{color:#6e6491; font-size:.96rem}
+    .tool-title{font-weight:800}
+    .tool-desc{color:var(--muted); font-size:.96rem}
 
     .empty{display:none; text-align:center; color:#fff; opacity:.9; padding:40px 0}
   </style>
 </head>
 <body>
-  <!-- 헤더 -->
-  <header>
-    <nav>
+  <!-- 헤더(메인과 동일 톤) -->
+  <header class="site-header">
+    <nav class="nav">
+      <!-- 요청: 로고 박스만 밝게 -->
       <div class="logo-container">
-        <img src="/logo.png" alt="JBM SOFT Logo" class="logo-img">
+        <img src="/logo.png" alt="JBM SOFT 로고" class="logo-img" />
         <span class="logo-text">JBM SOFT</span>
       </div>
-      <div class="menu">
+      <button class="nav-toggle" aria-label="메뉴 열기">☰</button>
+      <div class="nav-menu">
         <a href="/index.html">홈</a>
         <a href="/sitemap.html">서비스 모음</a>
         <a href="/privacy.html">개인정보처리방침</a>
@@ -78,7 +90,7 @@
   <!-- 히어로 -->
   <section class="sitemap-hero">
     <h1>무료 웹 도구 모음</h1>
-    <p>빠르게 쓰고 가볍게 공유하세요. 검색 또는 카테고리로 필터링할 수 있습니다.</p>
+    <p>검색하거나 카테고리로 빠르게 찾으세요. 모든 도구는 광고 최소, 가벼운 로딩으로 제공됩니다.</p>
 
     <div class="tools-toolbar" role="toolbar" aria-label="도구 카테고리">
       <button class="chip" data-cat="all" aria-pressed="true">전체</button>
@@ -95,59 +107,59 @@
     </div>
   </section>
 
-  <!-- 카드 목록 -->
+  <!-- 카드 목록 (루트 경로로 수정) -->
   <section class="tools-grid">
     <div class="tools-count" id="toolsCount">총 10개 도구</div>
 
     <div class="cards" id="cards">
       <!-- fun -->
-      <a href="/lotto.html" class="tool-card" data-cat="fun" data-tags="로또 번호 lottery random draw">
+      <a href="/lotto.html" class="card tool-card" data-cat="fun" data-tags="로또 번호 lottery random draw">
         <div class="tool-head"><span class="tool-ico">🎲</span><div class="tool-title">로또 번호 추첨기</div></div>
-        <div class="tool-desc">한 번에 1세트/5세트 번호를 생성하고 복사·공유까지.</div>
+        <p class="tool-desc">1세트/5세트 자동 생성 · 복사/공유</p>
       </a>
-      <a href="/fortune.html" class="tool-card" data-cat="fun" data-tags="운세 오늘의운세 fortune">
+      <a href="/fortune.html" class="card tool-card" data-cat="fun" data-tags="운세 오늘의운세 fortune">
         <div class="tool-head"><span class="tool-ico">🔮</span><div class="tool-title">오늘의 운세</div></div>
-        <div class="tool-desc">가볍게 즐기는 데일리 메시지. 긍정적 하루 루틴 만들기.</div>
+        <p class="tool-desc">데일리 긍정 메시지로 가볍게 시작</p>
       </a>
-      <a href="/rps.html" class="tool-card" data-cat="fun" data-tags="가위바위보 rps game">
+      <a href="/rps.html" class="card tool-card" data-cat="fun" data-tags="가위바위보 rps game">
         <div class="tool-head"><span class="tool-ico">✊</span><div class="tool-title">가위바위보 게임</div></div>
-        <div class="tool-desc">컴퓨터와 실시간 대결. 간단하지만 은근 중독성.</div>
+        <p class="tool-desc">심플하지만 은근 중독성 있는 미니 게임</p>
       </a>
 
       <!-- productivity / study -->
-      <a href="/timer.html" class="tool-card" data-cat="productivity study" data-tags="타이머 집중 공부 pomodoro">
+      <a href="/timer.html" class="card tool-card" data-cat="productivity study" data-tags="타이머 집중 공부 pomodoro">
         <div class="tool-head"><span class="tool-ico">⏲️</span><div class="tool-title">온라인 타이머</div></div>
-        <div class="tool-desc">1/3/5/10분 프리셋 + 사용자 지정. 전체화면 알람.</div>
+        <p class="tool-desc">1/3/5/10분 프리셋 · 전체화면 알람</p>
       </a>
-      <a href="/stopwatch.html" class="tool-card" data-cat="productivity study" data-tags="스톱워치 stopwatch lap">
+      <a href="/stopwatch.html" class="card tool-card" data-cat="productivity study" data-tags="스톱워치 stopwatch lap">
         <div class="tool-head"><span class="tool-ico">⏱️</span><div class="tool-title">온라인 스톱워치</div></div>
-        <div class="tool-desc">시작/일시정지/랩/리셋. 정확한 타이밍 기록.</div>
+        <p class="tool-desc">시작/일시정지/랩/리셋 · 정확한 측정</p>
       </a>
 
       <!-- utility -->
-      <a href="/qrcode.html" class="tool-card" data-cat="utility" data-tags="qr qrcode 생성기 maker">
+      <a href="/qrcode.html" class="card tool-card" data-cat="utility" data-tags="qr qrcode 생성기 maker">
         <div class="tool-head"><span class="tool-ico">🔗</span><div class="tool-title">QR 코드 생성기</div></div>
-        <div class="tool-desc">텍스트/URL을 즉시 QR 이미지로 변환하고 PNG 저장.</div>
+        <p class="tool-desc">텍스트/URL → 즉시 QR · PNG 저장</p>
       </a>
-      <a href="/converter.html" class="tool-card" data-cat="utility" data-tags="단위 변환 길이 무게 온도 currency">
+      <a href="/converter.html" class="card tool-card" data-cat="utility" data-tags="단위 변환 길이 무게 온도 currency">
         <div class="tool-head"><span class="tool-ico">🔄</span><div class="tool-title">단위 변환기</div></div>
-        <div class="tool-desc">길이·무게·온도 등 자주 쓰는 단위를 간편 변환.</div>
+        <p class="tool-desc">길이·무게·온도 등 자주 쓰는 단위 변환</p>
       </a>
-      <a href="/quotes.html" class="tool-card" data-cat="utility study" data-tags="명언 quotes 영감 inspiration">
+      <a href="/quotes.html" class="card tool-card" data-cat="utility study" data-tags="명언 quotes 영감 inspiration">
         <div class="tool-head"><span class="tool-ico">💬</span><div class="tool-title">랜덤 명언</div></div>
-        <div class="tool-desc">새로고침마다 영감 한 줄. 발표/회의 오프닝 멘트용.</div>
+        <p class="tool-desc">새로고침할 때마다 영감 한 줄</p>
       </a>
 
       <!-- health -->
-      <a href="/bmi.html" class="tool-card" data-cat="health" data-tags="bmi 건강 키 몸무게">
+      <a href="/bmi.html" class="card tool-card" data-cat="health" data-tags="bmi 건강 키 몸무게">
         <div class="tool-head"><span class="tool-ico">⚖️</span><div class="tool-title">BMI 계산기</div></div>
-        <div class="tool-desc">키·몸무게로 체질량지수와 범주를 즉시 확인.</div>
+        <p class="tool-desc">키·몸무게로 체질량지수와 범주 확인</p>
       </a>
 
       <!-- utility / study -->
-      <a href="/engname.html" class="tool-card" data-cat="utility study" data-tags="영어 이름 변환 romanization">
+      <a href="/engname.html" class="card tool-card" data-cat="utility study" data-tags="영어 이름 변환 romanization">
         <div class="tool-head"><span class="tool-ico">📝</span><div class="tool-title">영어 이름 생성기</div></div>
-        <div class="tool-desc">한국어 이름을 자연스러운 영어 표기로 변환.</div>
+        <p class="tool-desc">한국어 이름을 자연스러운 영어 표기로</p>
       </a>
     </div>
 
@@ -155,14 +167,24 @@
   </section>
 
   <!-- 푸터 -->
-  <footer>
-    © 2025 JBM SOFT. All rights reserved. ·
-    <a href="/privacy.html">개인정보처리방침</a> ·
-    <a href="/terms.html">이용약관</a> ·
-    <a href="/index.html">메인으로</a>
+  <footer class="site-footer">
+    <div class="footer__links">
+      <a href="/privacy.html">개인정보처리방침</a>
+      <a href="/terms.html">이용약관</a>
+      <a href="/index.html">메인으로</a>
+    </div>
+    <small>© 2025 JBM SOFT. All rights reserved.</small>
   </footer>
 
   <script>
+    // 모바일 메뉴 토글(전역 클래스와 호환)
+    const navToggle = document.querySelector('.nav-toggle');
+    if(navToggle){
+      navToggle.addEventListener('click', ()=> {
+        document.querySelector('.nav-menu').classList.toggle('open');
+      });
+    }
+
     // 검색 + 카테고리 필터
     (function(){
       const $search = document.getElementById('search');
@@ -171,7 +193,7 @@
       const $count = document.getElementById('toolsCount');
       const $empty = document.getElementById('emptyState');
       const chips = [...document.querySelectorAll('.chip')];
-      const items = [...$cards.querySelectorAll('.tool-card')];
+      const items = [...$cards.querySelectorAll('.card')];
       let activeCat = 'all';
 
       function apply(){
@@ -194,7 +216,7 @@
           ch.setAttribute('aria-pressed','true');
           activeCat = ch.dataset.cat;
           apply();
-        })
+        });
       });
       $search.addEventListener('input', apply);
       $clear.addEventListener('click', ()=>{ $search.value=''; $search.focus(); apply(); });
