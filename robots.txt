@@ -1,4 +1,5 @@
-User-agent: *
+User-Agent: *
 Allow: /
 
+Host: https://jbmsoft.co.kr
 Sitemap: https://jbmsoft.co.kr/sitemap.xml
