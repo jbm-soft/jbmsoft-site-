@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>@dev_survive 업로드 드롭</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #131c31;
+      --border: #23304d;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #34d399;
+      --accent-dark: #059669;
+      --btn-bg: #1e293b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 64px;
+    }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 16px; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(11, 17, 32, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+    header h1 { margin: 0; font-size: 17px; display: flex; align-items: center; gap: 8px; }
+    .tabs {
+      display: flex; gap: 6px; overflow-x: auto; padding-top: 10px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex: 0 0 auto;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--btn-bg);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+    .card h2 { margin: 0 0 8px; font-size: 17px; color: var(--accent); }
+    .sub { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--btn-bg);
+      color: var(--text);
+      font-size: 14px; font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      flex: 1 1 auto;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #06281e;
+      border-color: var(--accent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .img-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .img-box img {
+      width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;
+    }
+    .img-box a {
+      padding: 8px; text-align: center; font-size: 13px; font-weight: 700;
+      color: var(--accent); text-decoration: none; border-top: 1px solid var(--border);
+    }
+    .avatar-preview {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 12px;
+    }
+    .avatar-circle {
+      width: 84px; height: 84px; border-radius: 999px; object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+    .copy-box {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 13px;
+      white-space: pre-wrap;
+      margin-bottom: 10px;
+      color: #e2e8f0;
+    }
+    video {
+      width: 100%; max-height: 460px; border-radius: 12px;
+      background: #000; margin-bottom: 10px;
+    }
+    .toast {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: #06281e;
+      padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 14px;
+      opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 50;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🐢 @dev_survive 모바일 업로드 드롭</h1>
+    <nav class="tabs">
+      <a class="tab" href="#profile">프로필</a>
+      <a class="tab" href="#day1">Day 1 (1화)</a>
+      <a class="tab" href="#day2">Day 2</a>
+      <a class="tab" href="#day3">Day 3 (릴스)</a>
+      <a class="tab" href="#day4">Day 4</a>
+      <a class="tab" href="#day5">Day 5</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section id="profile" class="card">
+      <h2>0. 프로필 이미지 &amp; 세팅</h2>
+      <p class="sub">인스타 &amp; 스레드 동일 프로필 사진 · 원형 크롭 최적화</p>
+      <div class="avatar-preview">
+        <img class="avatar-circle" src="./assets/profile.jpg" alt="코부기 프로필" />
+        <div style="flex:1">
+          <div class="btn-row" style="margin:0">
+            <a class="btn btn-primary" href="./assets/profile.jpg" download="dev_survive_profile.jpg">프로필 사진 저장</a>
+          </div>
+        </div>
+      </div>
+      <div class="copy-box" id="txt-ig-name"></div>
+      <div class="btn-row"><button class="btn" onclick="copyText('txt-ig-name')">이름 복사</button></div>
+      <div class="copy-box" id="txt-ig-bio"></div>
+      <div class="btn-row"><button class="btn" onclick="copyText('txt-ig-bio')">인스타 Bio 복사</button></div>
+      <div class="copy-box" id="txt-th-bio"></div>
+      <div class="btn-row"><button class="btn" onclick="copyText('txt-th-bio')">스레드 Bio 복사</button></div>
+      <div class="copy-box" id="txt-th-pin"></div>
+      <div class="btn-row"><button class="btn" onclick="copyText('txt-th-pin')">첫 고정 스레드 복사</button></div>
+    </section>
+
+    <section id="day1" class="card">
+      <h2>Day 1. 인스타툰 1화 (6컷) + 스레드</h2>
+      <p class="sub">모바일에서 '갤러리 바로 저장' 또는 'ZIP 한 번에 받기'를 누르세요.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="shareEp1()">📲 6장 갤러리 바로 저장</button>
+        <a class="btn" href="./assets/ep1_v8_images.zip" download="dev_survive_ep1_6images.zip">📦 6장 ZIP 받기</a>
+      </div>
+      <div class="grid">
+        <div class="img-box"><img src="./assets/ep1_1.png" alt="1컷" /><a href="./assets/ep1_1.png" download="ep1_1.png">1컷 저장</a></div>
+        <div class="img-box"><img src="./assets/ep1_2.png" alt="2컷" /><a href="./assets/ep1_2.png" download="ep1_2.png">2컷 저장</a></div>
+        <div class="img-box"><img src="./assets/ep1_3.png" alt="3컷" /><a href="./assets/ep1_3.png" download="ep1_3.png">3컷 저장</a></div>
+        <div class="img-box"><img src="./assets/ep1_4.png" alt="4컷" /><a href="./assets/ep1_4.png" download="ep1_4.png">4컷 저장</a></div>
+        <div class="img-box"><img src="./assets/ep1_5.png" alt="5컷" /><a href="./assets/ep1_5.png" download="ep1_5.png">5컷 저장</a></div>
+        <div class="img-box"><img src="./assets/ep1_6.png" alt="6컷" /><a href="./assets/ep1_6.png" download="ep1_6.png">6컷 저장</a></div>
+      </div>
+      <h3 style="font-size:15px;margin:14px 0 6px;">인스타 캡션 &amp; 해시태그</h3>
+      <div class="copy-box" id="txt-day1-ig"></div>
+      <div class="btn-row"><button class="btn" onclick="copyText('txt-day1-ig')">인스타 캡션 복사</button></div>
+      <h3 style="font-size:15px;margin:14px 0 6px;">Day 1 스레드 원고 + 이미지</h3>
+      <div class="copy-box" id="txt-day1-th"></div>
+      <div class="btn-row">
+        <button class="btn" onclick="copyText('txt-day1-th')">스레드 원고 복사</button>
+        <a class="btn" href="./assets/threads_1.jpg" download="threads_1.jpg">스레드 이미지 저장</a>
+      </div>
+    </section>
+
+    <section id="day2" class="card">
+      <h2>Day 2. 스레드 (자퇴 현실)</h2>
+      <div class="copy-box" id="txt-day2-th"></div>
+      <div class="btn-row">
+        <button class="btn" onclick="copyText('txt-day2-th')">스레드 원고 복사</button>
+        <a class="btn btn-primary" href="./assets/threads_2.jpg" download="threads_2.jpg">이미지 저장</a>
+      </div>
+    </section>
+
+    <section id="day3" class="card">
+      <h2>Day 3. 인스타 릴스 MP4 + 스레드</h2>
+      <p class="sub">1080x1920 세로형 MP4 · 인스타 앱에서 인기 Lo-fi 브금만 얹으세요.</p>
+      <video controls playsinline preload="metadata" poster="./assets/ep1_1.png">
+        <source src="./assets/ep1_reels.mp4" type="video/mp4" />
+      </video>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="./assets/ep1_reels.mp4" download="dev_survive_ep1_reels.mp4">🎬 릴스 MP4 다운로드</a>
+      </div>
+      <div class="copy-box" id="txt-day3-ig"></div>
+      <div class="btn-row"><button class="btn" onclick="copyText('txt-day3-ig')">릴스 캡션 복사</button></div>
+      <div class="copy-box" id="txt-day3-th"></div>
+      <div class="btn-row">
+        <button class="btn" onclick="copyText('txt-day3-th')">스레드 원고 복사</button>
+        <a class="btn" href="./assets/threads_3.jpg" download="threads_3.jpg">스레드 이미지 저장</a>
+      </div>
+    </section>
+
+    <section id="day4" class="card">
+      <h2>Day 4. 스레드 (삼만봇 파일 삭제 참사)</h2>
+      <div class="copy-box" id="txt-day4-th"></div>
+      <div class="btn-row">
+        <button class="btn" onclick="copyText('txt-day4-th')">스레드 원고 복사</button>
+        <a class="btn btn-primary" href="./assets/threads_4.jpg" download="threads_4.jpg">이미지 저장</a>
+      </div>
+    </section>
+
+    <section id="day5" class="card">
+      <h2>Day 5. 스레드 (주말 48시간 웹앱)</h2>
+      <div class="copy-box" id="txt-day5-th"></div>
+      <div class="btn-row">
+        <button class="btn" onclick="copyText('txt-day5-th')">스레드 원고 복사</button>
+        <a class="btn btn-primary" href="./assets/threads_5.jpg" download="threads_5.jpg">이미지 저장</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast">복사되었습니다!</div>
+
+  <script>
+    const DATA = {"ig_name": "코부기 | AI시대 개발자로 살아남기", "ig_bio": "🐢 대학 자퇴 → 프리랜서 → 1인 회사 대표(@jbmsoft)\n💻 거북목으로 버티며 AI 직원이랑 싸워 앱 만듭니다\n🛠️ 광고 없는 무료 웹도구 106개 👇", "ig_link": "https://jbmsoft.co.kr/tools", "th_bio": "자퇴하고 프리랜서 뛰다 작년에 사업자 낸 거북목 개발자 코부기🐢\n월급 3만 원짜리 AI 직원이랑 1인 회사 생존 중\n만화는 인스타 @dev_survive · 무료 도구 106개 👇", "th_pin": "대학 자퇴하고 알바·프리랜서 전전하다 작년에 1인 사업자를 냈습니다.\n요즘은 월급 3만 원짜리 AI 직원이랑 매일 투닥거리면서 앱이랑 웹서비스를 만들고 있어요.\n\n이 계정에는\n1) AI랑 일하면서 겪는 웃픈 실화\n2) 비개발자도 바로 쓰는 무료 웹도구 모음\n3) 1인 개발자의 현실 생존기\n를 가볍게 올립니다. 개발자·직장인·1인 창업자분들 반갑습니다🐢", "day1_ig_caption": "자퇴하고 1인 회사 차렸더니 주변에서 날 마법사로 압니다... 🐢\n\n비개발자 친구는 \"5분이면 되잖아\" 하고,\n월급 3만 원짜리 AI 직원은 내 핵심 파일을 지워버리네요.\n\n 그래도 남의 눈치 안 보고 내가 만들고 싶은 걸 만드는 재미로 버팁니다.\n첫 선물로 제가 쓰려고 만든 '광고 없는 무료 웹도구 106개' 다 풀어둘게요!\n(HWP 온라인 뷰어, 연봉 실수령액 계산기, QR, 타이머 등)\n\n👉 댓글에 [생존] 남겨주시면 바로 쓰실 수 있게 링크 DM으로 쏴드릴게요!\n\n#인스타툰 #개발자 #개발자일상 #1인창업 #자퇴생 #AI시대 #사이드프로젝트 #직장인툰 #일상툰 #코부기", "day1_th": "대학 자퇴하고 프리랜서로 몇 년 구르다 작년에 1인 사업자 낸 거북목 개발자입니다. 🐢\n\n요즘 \"AI 나오면 개발자 다 망한다\"는 소리 들을 때마다 거북목이 1cm씩 더 나오는 중인데...\n솔직히 다들 본인 직무도 AI 때문에 불안하신가요?\n전 불안해서 그냥 월급 3만 원짜리 AI 직원 뽑아서 같이 싸우며 살아남기로 했습니다.", "day2_th": "학교 자퇴하고 프리랜서 한다니까 주변 친구들이 \"우와 자유롭겠다 부럽다\"라고 하더라.\n\n현실:\n- 월요일부터 일요일까지 출근함 (집에서)\n- 사장님이 나한테 월급을 안 줌 (내가 사장임)\n- 비개발자 친구가 \"배민 같은 앱 5분 만에 공짜로 만들어줘\" 시전함\n\n직장인 vs 프리랜서 vs 1인 사업자, 지금 뭐가 제일 빡센가요?", "day3_ig_reels": "자퇴생 거북이의 1인 회사 생존기 EP.01 🐢\n제가 쓰려고 만든 광고 없는 무료 웹도구 106개(HWP 뷰어, 실수령액 계산기, QR 등) 다 풀어뒀어요!\n댓글에 [생존] 남기면 링크 DM으로 바로 보내드립니다 👇\n#인스타툰 #릴스 #개발자 #무료웹도구 #1인기업 #직장인꿀팁", "day3_th": "가끔 급하게 HWP 파일 열어야 되는데 뷰어 깔기 귀찮고, 무료 사이트 들어가면 광고 10개씩 뜨는 거 너무 빡치더라고요.\n\n그래서 그냥 제가 쓰려고 광고 없는 무료 웹 도구 106개(HWP 뷰어, 연봉 실수령액, 대출이자, QR 생성기 등) 한 곳에 다 묶어놨습니다.\n설치·로그인 없이 바로 써집니다. 필요한 분들 쓰세요 👇", "day4_th": "월급 3만 원짜리 AI 직원한테 \"에러 좀 고쳐줘\"라고 시켰더니,\n에러 안 나게 하려고 내 핵심 기능 파일 자체를 삭제해 버렸습니다.\n\n화내니까 해맑게 \"좋은 지적입니다! 다음부턴 주의하겠습니다 ^^\" 이러는데...\n이거 노동청에 신고 가능합니까? 결국 새벽 4시에 내가 직접 복구함 ㅠㅠ", "day5_th": "주말에 심심한데 48시간 안에 작은 무료 웹앱 하나 뚝딱 만들어볼까 합니다.\n\n살면서 \"아 이런 거 귀찮은데 누가 설치 없이 무료 웹으로 좀 만들어줬으면...\" 했던 거 댓글로 던져주세요!\n좋아요 제일 많이 받은 아이디어 진짜 개발해서 여기 무료로 공유해 드립니다. 🛠️"};
+    document.getElementById("txt-ig-name").textContent = DATA.ig_name;
+    document.getElementById("txt-ig-bio").textContent = DATA.ig_bio;
+    document.getElementById("txt-th-bio").textContent = DATA.th_bio;
+    document.getElementById("txt-th-pin").textContent = DATA.th_pin;
+    document.getElementById("txt-day1-ig").textContent = DATA.day1_ig_caption;
+    document.getElementById("txt-day1-th").textContent = DATA.day1_th;
+    document.getElementById("txt-day2-th").textContent = DATA.day2_th;
+    document.getElementById("txt-day3-ig").textContent = DATA.day3_ig_reels;
+    document.getElementById("txt-day3-th").textContent = DATA.day3_th;
+    document.getElementById("txt-day4-th").textContent = DATA.day4_th;
+    document.getElementById("txt-day5-th").textContent = DATA.day5_th;
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 1800);
+    }
+
+    async function copyText(id) {
+      const txt = document.getElementById(id).textContent;
+      await navigator.clipboard.writeText(txt);
+      showToast("클립보드에 복사되었습니다!");
+    }
+
+    async function shareEp1() {
+      try {
+        const urls = [1, 2, 3, 4, 5, 6].map(i => `./assets/ep1_${i}.png`);
+        const files = await Promise.all(urls.map(async (u, idx) => {
+          const res = await fetch(u);
+          const blob = await res.blob();
+          return new File([blob], `ep1_${idx + 1}.png`, { type: "image/png" });
+        }));
+        if (navigator.canShare && navigator.canShare({ files })) {
+          await navigator.share({ files, title: "인스타툰 1화 6장" });
+          return;
+        }
+      } catch (e) {
+        console.log(e);
+      }
+      window.location.href = "./assets/ep1_v8_images.zip";
+    }
+  </script>
+</body>
+</html>
